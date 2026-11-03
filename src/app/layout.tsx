@@ -4,7 +4,7 @@ import "./globals.css";
 import { SiteEffects } from "@/components/SiteEffects";
 import { CommandPalette } from "@/components/CommandPalette";
 import { FloatingWhatsApp } from "@/components/ContactSection";
-import { CONTACT_EMAIL, CONTACT_PHONE_TEL, GITHUB_URL, LINKEDIN_URL } from "@/data/portfolio";
+import { CONTACT_EMAIL, CONTACT_PHONE_TEL, GITHUB_URL, GOOGLE_SITE_VERIFICATION, LINKEDIN_URL } from "@/data/portfolio";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,6 +22,8 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
+  verification: GOOGLE_SITE_VERIFICATION ? { google: GOOGLE_SITE_VERIFICATION } : undefined,
   title: "Charan Venkatesh Gorle — Cloud / DevOps Engineer",
   description: DESCRIPTION,
   keywords: ["Charan Venkatesh Gorle", "DevOps", "Cloud", "SRE", "Observability", "OpenTelemetry", "Hyderabad"],
