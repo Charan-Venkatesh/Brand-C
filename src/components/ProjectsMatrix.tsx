@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Layers, ArrowRight, Building, Shield, ExternalLink, Code2 } from "lucide-react";
 import { HCCStore, ProjectItem } from "@/lib/store";
+import { withBase } from "@/lib/utils";
 
 interface ProjectsMatrixProps {
   selectedCategory?: string;
@@ -40,7 +41,7 @@ export const ProjectsMatrix: React.FC<ProjectsMatrixProps> = () => {
           </div>
 
           <a
-            href="/projects"
+            href={withBase("/projects")}
             className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-bold bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 shadow-sm transition"
           >
             <span>View All Projects</span>

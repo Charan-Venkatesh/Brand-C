@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { Download, Mail, Terminal, ExternalLink } from "lucide-react";
-import { HCCStore } from "@/lib/store";
+import { IS_STATIC, HCCStore } from "@/lib/store";
+import { withBase } from "@/lib/utils";
 
 interface NavigationProps {
   onOpenContact: () => void;
@@ -24,7 +25,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand & Identity */}
-        <a href="/" className="flex items-center space-x-3 group">
+        <a href={withBase("/")} className="flex items-center space-x-3 group">
           <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600 text-white shadow-sm group-hover:bg-blue-700 transition">
             <Terminal className="w-4 h-4" />
           </div>
@@ -47,21 +48,23 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
         <nav className="hidden md:flex items-center space-x-5 text-xs font-semibold text-slate-600">
           <a href="#story" className="hover:text-blue-600 transition">Story</a>
           <a href="#experience" className="hover:text-blue-600 transition">Experience</a>
-          <a href="/projects" className="hover:text-blue-600 transition">Projects</a>
-          <a href="/journey" className="hover:text-blue-600 transition">Journey</a>
+          <a href={withBase("/projects")} className="hover:text-blue-600 transition">Projects</a>
+          <a href={withBase("/journey")} className="hover:text-blue-600 transition">Journey</a>
           <a href="#leadership" className="hover:text-blue-600 transition">Leadership</a>
           <a href="#certifications" className="hover:text-blue-600 transition">Certifications</a>
         </nav>
 
         {/* Action Buttons */}
         <div className="flex items-center space-x-2.5">
-          <a
-            href="/admin/dashboard"
+          {!IS_STATIC && (
+<a
+            href={withBase("/admin/dashboard")}
             className="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition"
             title="Open Admin Portal"
           >
             <span>Admin</span>
           </a>
+)}
 
           <button
             onClick={handleDownloadResume}

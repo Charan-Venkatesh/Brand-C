@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { BookOpen, ArrowRight } from "lucide-react";
 import { HCCStore, ProfileData } from "@/lib/store";
+import { withBase } from "@/lib/utils";
 
 export const MyStorySection: React.FC = () => {
   const [profile, setProfile] = useState<ProfileData | null>(null);
@@ -37,7 +38,7 @@ export const MyStorySection: React.FC = () => {
 
         <div className="mt-5 flex items-center space-x-4">
           <a
-            href="/about"
+            href={withBase("/about")}
             className="inline-flex items-center space-x-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 hover:underline"
           >
             <span>Read complete professional background</span>
@@ -45,7 +46,7 @@ export const MyStorySection: React.FC = () => {
           </a>
 
           <a
-            href="/journey"
+            href={withBase("/journey")}
             className="inline-flex items-center space-x-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 hover:underline"
           >
             <span>View visual career progression</span>

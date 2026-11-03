@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Mail, Send, CheckCircle2, ArrowLeft } from "lucide-react";
 import { HCCStore } from "@/lib/store";
+import { withBase } from "@/lib/utils";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -36,7 +37,7 @@ export default function ContactPage() {
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-12 flex-1">
         <a
-          href="/"
+          href={withBase("/")}
           className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 mb-6 transition"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
@@ -63,7 +64,7 @@ export default function ContactPage() {
                 Thank you, <span className="font-semibold text-slate-900">{formData.name}</span>. Your message has been received by Charan Venkatesh Gorle.
               </p>
               <a
-                href="/"
+                href={withBase("/")}
                 className="mt-6 inline-block px-5 py-2 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
               >
                 Return to Homepage

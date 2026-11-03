@@ -3,6 +3,7 @@
 import React from "react";
 import { Navigation } from "@/components/Navigation";
 import { MapPin, GraduationCap, Terminal, ArrowLeft, Briefcase, Award } from "lucide-react";
+import { withBase } from "@/lib/utils";
 
 export default function AboutPage() {
   return (
@@ -11,7 +12,7 @@ export default function AboutPage() {
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 flex-1">
         <a
-          href="/"
+          href={withBase("/")}
           className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 mb-6 transition"
         >
           <ArrowLeft className="w-3.5 h-3.5" />

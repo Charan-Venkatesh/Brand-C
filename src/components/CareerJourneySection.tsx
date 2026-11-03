@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Milestone, ArrowRight, CheckCircle2, ChevronRight } from "lucide-react";
+import { withBase } from "@/lib/utils";
 
 export const CareerJourneySection: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number | null>(null);
@@ -99,7 +100,7 @@ export const CareerJourneySection: React.FC = () => {
 
         <div className="mt-8 text-center">
           <a
-            href="/journey"
+            href={withBase("/journey")}
             className="inline-flex items-center space-x-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 hover:underline"
           >
             <span>Explore comprehensive narrative on the dedicated Journey page</span>

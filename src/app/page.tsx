@@ -13,6 +13,8 @@ import { EducationSection } from "@/components/EducationSection";
 import { ResumeViewer } from "@/components/ResumeViewer";
 import { ContactModal } from "@/components/ContactModal";
 import { Terminal, Mail, FileDown, ArrowUp, Compass, Cpu } from "lucide-react";
+import { withBase } from "@/lib/utils";
+import { IS_STATIC } from "@/lib/store";
 
 export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
@@ -91,13 +93,15 @@ export default function Home() {
           </div>
 
           <div className="flex items-center space-x-4">
-            <a href="/admin/login" className="hover:text-blue-600 transition">
+            {!IS_STATIC && (
+<a href={withBase("/admin/login")} className="hover:text-blue-600 transition">
               Admin Portal
             </a>
-            <a href="/projects" className="hover:text-blue-600 transition">
+)}
+            <a href={withBase("/projects")} className="hover:text-blue-600 transition">
               All Projects
             </a>
-            <a href="/journey" className="hover:text-blue-600 transition">
+            <a href={withBase("/journey")} className="hover:text-blue-600 transition">
               Journey
             </a>
             <button

@@ -1,6 +1,10 @@
 "use client";
 
-const API_BASE = "http://localhost:5000/api/v1";
+import { staticOverview, CONTACT_EMAIL } from "@/data/portfolio";
+
+// Set NEXT_PUBLIC_API_BASE="" (as the GitHub Pages build does) to run without a backend.
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:5000/api/v1";
+export const IS_STATIC = !API_BASE;
 
 export interface ProfileData {
   fullName: string;
@@ -197,6 +201,7 @@ export interface ContactInquiry {
 
 export const HCCStore = {
   getOverview: async () => {
+    if (IS_STATIC) return staticOverview;
     try {
       const res = await fetch(`${API_BASE}/public/overview`, { cache: "no-store" });
       if (res.ok) {
@@ -239,11 +244,12 @@ export const HCCStore = {
     } catch (e) {
       console.warn("API overview fetch error:", e);
     }
-    return null;
+    return staticOverview;
   },
 
   // 1. Projects Real CRUD
   getProjects: async (all = false): Promise<ProjectItem[]> => {
+    if (IS_STATIC) return staticOverview.projects;
     try {
       const res = await fetch(`${API_BASE}/projects?all=${all}`, { cache: "no-store" });
       if (res.ok) {
@@ -256,7 +262,7 @@ export const HCCStore = {
     } catch (e) {
       console.warn("Failed to fetch projects from API:", e);
     }
-    return [];
+    return staticOverview.projects;
   },
 
   createProject: async (project: Partial<ProjectItem>): Promise<ProjectItem | null> => {
@@ -519,6 +525,13 @@ export const HCCStore = {
     roleInterestedIn: string;
     message: string;
   }) => {
+    if (IS_STATIC) {
+      // No backend: hand the inquiry to the visitor's email client instead.
+      const subject = `Opportunity: ${inquiry.roleInterestedIn || "Hello"} — ${inquiry.companyName || inquiry.senderName}`;
+      const body = `${inquiry.message}\n\n${inquiry.senderName}\n${inquiry.senderEmail}\n${inquiry.companyName}`;
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      return { success: true, message: "Opening your email client." };
+    }
     try {
       const res = await fetch(`${API_BASE}/contact/submit`, {
         method: "POST",

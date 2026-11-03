@@ -5,6 +5,7 @@ import { Navigation } from "@/components/Navigation";
 import { ContactModal } from "@/components/ContactModal";
 import { Search, Layers, ExternalLink, Code2, Building, ShieldCheck, ArrowLeft } from "lucide-react";
 import { HCCStore, ProjectItem } from "@/lib/store";
+import { withBase } from "@/lib/utils";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectItem[]>([]);
@@ -54,7 +55,7 @@ export default function ProjectsPage() {
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <a
-          href="/"
+          href={withBase("/")}
           className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 mb-6 transition"
         >
           <ArrowLeft className="w-3.5 h-3.5" />

@@ -14,6 +14,7 @@ import {
   ArrowRight,
   User,
 } from "lucide-react";
+import { RoleTyper } from "@/components/SiteEffects";
 import { HCCStore, ProfileData } from "@/lib/store";
 
 interface HeroSectionProps {
@@ -84,8 +85,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
               {profile?.fullName || "Charan Venkatesh Gorle"}
             </h1>
 
-            <div className="text-lg sm:text-xl font-bold text-blue-600">
-              {profile?.headline || "Cloud / DevOps / Infrastructure Engineer"}
+            <div className="text-lg sm:text-xl font-bold text-blue-600 min-h-[1.75rem] sm:min-h-[2rem]">
+              {profile?.headline || (
+                <RoleTyper
+                  roles={[
+                    "Cloud / DevOps / Infrastructure Engineer",
+                    "Observability & OpenTelemetry",
+                    "Linux • Docker • CI/CD",
+                    "Python Automation",
+                  ]}
+                />
+              )}
             </div>
 
             <p className="text-sm font-semibold text-slate-600">
