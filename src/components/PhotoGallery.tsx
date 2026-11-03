@@ -67,7 +67,7 @@ export const PhotoGallery: React.FC = () => {
             <button
               key={g.src}
               onClick={() => setOpen(i)}
-              className={`group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 text-left ${tileClass(i)}`}
+              className={`group relative overflow-hidden rounded-3xl border border-slate-200/70 bg-slate-100 text-left shadow-[0_12px_32px_-16px_rgba(79,70,229,0.25)] ${tileClass(i)}`}
             >
               <img
                 src={withBase(`/${g.src}`)}
@@ -75,11 +75,11 @@ export const PhotoGallery: React.FC = () => {
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/10 to-transparent opacity-90 sm:opacity-60 group-hover:opacity-90 transition" />
-              <div className="absolute inset-x-0 bottom-0 p-4 text-xs sm:text-sm font-semibold leading-snug text-slate-900 sm:translate-y-2 sm:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-4 text-xs sm:text-sm font-semibold leading-snug text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
                 {g.caption}
               </div>
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/0 group-hover:ring-sky-400/50 transition" />
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/0 group-hover:ring-violet-400/70 transition" />
             </button>
           ))}
         </div>
@@ -97,11 +97,11 @@ export const PhotoGallery: React.FC = () => {
             touchX.current = null;
           }}
         >
-          <button className="absolute top-4 right-4 p-2.5 rounded-full bg-slate-100 hover:bg-white/20 text-slate-900" aria-label="Close">
+          <button className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white" aria-label="Close">
             <X className="w-5 h-5" />
           </button>
           <button
-            className="hidden sm:flex absolute left-4 p-3 rounded-full bg-slate-100 hover:bg-white/20 text-slate-900"
+            className="hidden sm:flex absolute left-4 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white"
             aria-label="Previous photo"
             onClick={(e) => {
               e.stopPropagation();
@@ -111,7 +111,7 @@ export const PhotoGallery: React.FC = () => {
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
-            className="hidden sm:flex absolute right-4 p-3 rounded-full bg-slate-100 hover:bg-white/20 text-slate-900"
+            className="hidden sm:flex absolute right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white"
             aria-label="Next photo"
             onClick={(e) => {
               e.stopPropagation();
@@ -127,9 +127,9 @@ export const PhotoGallery: React.FC = () => {
               alt={gallery[open].caption}
               className="max-h-[78vh] w-auto rounded-xl mx-auto shadow-2xl animate-[fadeIn_.35s_ease]"
             />
-            <figcaption className="mt-4 text-center text-sm text-slate-600">
+            <figcaption className="mt-4 text-center text-sm text-white">
               {gallery[open].caption}
-              <span className="ml-2 text-slate-500">
+              <span className="ml-2 text-white/60">
                 {open + 1} / {gallery.length}
               </span>
             </figcaption>

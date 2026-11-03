@@ -1,81 +1,197 @@
 "use client";
 
-import React, { useState } from "react";
-import { Download, Mail } from "lucide-react";
-import { IS_STATIC, HCCStore } from "@/lib/store";
+import React, { useEffect, useState } from "react";
+import { Mail, Menu, Search, X } from "lucide-react";
+import { IS_STATIC } from "@/lib/store";
 import { withBase } from "@/lib/utils";
 import { BrandMark, Wordmark } from "@/components/Brand";
+import { openSearch } from "@/components/CommandPalette";
 
 interface NavigationProps {
   onOpenContact: () => void;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
-  const [downloading, setDownloading] = useState(false);
+const links = [
+  { id: "story", label: "Story" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Work" },
+  { id: "leadership", label: "Leadership" },
+  { id: "gallery", label: "Photos" },
+  { id: "resume", label: "Resume" },
+];
 
-  const handleDownloadResume = async () => {
-    setDownloading(true);
-    await HCCStore.downloadActiveResume();
-    setTimeout(() => {
-      setDownloading(false);
-      window.open("#resume", "_self");
-    }, 400);
-  };
+const home = (hash: string) => `${withBase("/")}#${hash}`;
+
+export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
+  const [active, setActive] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMac, setIsMac] = useState(true);
+
+  useEffect(() => {
+    setIsMac(/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent));
+  }, []);
+
+  // Highlight the section currently in view (sections may render after data loads).
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(e.target.id);
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    const watch = () =>
+      links.forEach(({ id }) => {
+        const el = document.getElementById(id);
+        if (el && !el.dataset.spy) {
+          el.dataset.spy = "1";
+          observer.observe(el);
+        }
+      });
+    watch();
+    const mutations = new MutationObserver(watch);
+    mutations.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      observer.disconnect();
+      mutations.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+  }, [menuOpen]);
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full border-b border-slate-200/70 bg-white/75 backdrop-blur-xl text-slate-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Brand & Identity */}
-        <a href={withBase("/")} className="flex items-center gap-2.5 group" aria-label="Home">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        {/* Brand */}
+        <a href={withBase("/")} className="flex items-center gap-2.5 group shrink-0" aria-label="Home">
           <BrandMark className="w-8 h-8 transition group-hover:scale-105" />
           <div className="leading-tight">
             <Wordmark className="text-lg text-slate-900" />
-            <p className="text-[10px] text-slate-500 hidden lg:block tracking-wide">
+            <p className="text-[10px] text-slate-500 hidden xl:block tracking-wide">
               Cloud · DevOps · Observability
             </p>
           </div>
         </a>
 
-        {/* Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-5 text-xs font-semibold text-slate-600">
-          <a href="#story" className="hover:text-slate-900 transition">Story</a>
-          <a href="#experience" className="hover:text-slate-900 transition">Experience</a>
-          <a href={withBase("/projects")} className="hover:text-slate-900 transition">Projects</a>
-          <a href={withBase("/journey")} className="hover:text-slate-900 transition">Journey</a>
-          <a href="#leadership" className="hover:text-slate-900 transition">Leadership</a>
-          <a href="#certifications" className="hover:text-slate-900 transition">Certifications</a>
+        {/* Section links with active indicator */}
+        <nav className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-slate-100/70 border border-slate-200/70">
+          {links.map((l) => (
+            <a
+              key={l.id}
+              href={home(l.id)}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition ${
+                active === l.id
+                  ? "bg-white text-slate-900 shadow-sm"
+                  : "text-slate-500 hover:text-slate-900"
+              }`}
+            >
+              {l.label}
+            </a>
+          ))}
         </nav>
 
-        {/* Action Buttons */}
-        <div className="flex items-center space-x-2.5">
+        {/* Actions */}
+        <div className="flex items-center gap-2">
           {!IS_STATIC && (
-<a
-            href={withBase("/admin/dashboard")}
-            className="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition"
-            title="Open Admin Portal"
-          >
-            <span>Admin</span>
-          </a>
-)}
+            <a
+              href={withBase("/admin/dashboard")}
+              className="hidden sm:inline-flex px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition"
+            >
+              Admin
+            </a>
+          )}
 
           <button
-            onClick={handleDownloadResume}
-            disabled={downloading}
-            className="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 border border-slate-200/70 text-slate-700 transition"
+            onClick={openSearch}
+            className="group inline-flex items-center gap-2 h-9 pl-3 pr-2 rounded-full bg-white border border-slate-200 text-slate-500 hover:border-indigo-300 hover:text-slate-900 shadow-sm transition"
+            aria-label="Search"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span>{downloading ? "Downloading..." : "Resume"}</span>
+            <Search className="w-4 h-4" />
+            <span className="hidden sm:inline text-xs font-medium">Search</span>
+            <kbd className="hidden sm:inline-flex px-1.5 py-0.5 rounded-md bg-slate-100 text-[10px] font-semibold text-slate-500 group-hover:bg-indigo-50 group-hover:text-indigo-600">
+              {isMac ? "⌘K" : "Ctrl K"}
+            </kbd>
           </button>
 
           <button
             onClick={onOpenContact}
-            className="inline-flex items-center space-x-1.5 whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-lg shadow-slate-900/15 transition"
+            className="hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap h-9 px-4 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-lg shadow-slate-900/15 transition"
           >
             <Mail className="w-3.5 h-3.5" />
-            <span>Let&apos;s Connect</span>
+            <span>Let&apos;s talk</span>
+          </button>
+
+          <button
+            onClick={() => setMenuOpen(true)}
+            className="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-full bg-slate-900 text-white"
+            aria-label="Open menu"
+          >
+            <Menu className="w-4 h-4" />
           </button>
         </div>
       </div>
+
     </header>
+
+      {/* Mobile menu (outside the header: its backdrop-filter would trap a fixed overlay) */}
+      {menuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[60] bg-white/95 backdrop-blur-xl animate-[fadeIn_.2s_ease]">
+          <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="aurora aurora-1" />
+            <div className="aurora aurora-2" />
+          </div>
+          <div className="relative h-16 px-4 flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <BrandMark className="w-8 h-8" />
+              <Wordmark className="text-lg text-slate-900" />
+            </div>
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 text-slate-900"
+              aria-label="Close menu"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+          <nav className="relative px-6 pt-6 flex flex-col">
+            {links.map((l, i) => (
+              <a
+                key={l.id}
+                href={home(l.id)}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-baseline gap-4 py-3 border-b border-slate-200/70 text-3xl font-black tracking-tight text-slate-900"
+              >
+                <span className="text-xs font-bold text-indigo-500 w-6">{String(i + 1).padStart(2, "0")}</span>
+                {l.label}
+              </a>
+            ))}
+          </nav>
+          <div className="relative px-6 pt-8 grid grid-cols-2 gap-3">
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                openSearch();
+              }}
+              className="inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-white border border-slate-200 text-sm font-semibold text-slate-700 shadow-sm"
+            >
+              <Search className="w-4 h-4" />
+              Search
+            </button>
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                onOpenContact();
+              }}
+              className="inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-brand text-sm font-bold text-white shadow-lg shadow-violet-500/25"
+            >
+              <Mail className="w-4 h-4" />
+              Let&apos;s talk
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };

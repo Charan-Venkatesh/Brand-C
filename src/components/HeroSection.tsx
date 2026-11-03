@@ -37,6 +37,8 @@ const stack = [
   "FastAPI", "Power BI", "Azure", "Git", "SQL", "Shell", "Observability",
 ];
 
+const orgs = ["Accenture", "Indian Navy", "Efftronics Systems", "Andhra University", "Google DSC", "Hult Prize"];
+
 const capabilities = [
   {
     label: "Cloud",
@@ -256,6 +258,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
               <div className="text-xs sm:text-sm font-medium text-slate-600 mt-1">{s.label}</div>
             </div>
           ))}
+        </div>
+
+        {/* Organizations */}
+        <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+          <div className="shrink-0 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
+            Built for &amp; with
+          </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm sm:text-base font-black tracking-tight text-slate-400">
+            {orgs.map((o) => (
+              <span key={o} className="hover:text-slate-900 transition">{o}</span>
+            ))}
+          </div>
         </div>
 
         {/* What I work on */}
