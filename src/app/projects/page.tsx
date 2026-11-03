@@ -7,12 +7,30 @@ import { Search, Layers, ExternalLink, Code2, Building, ShieldCheck, ArrowLeft }
 import { HCCStore, ProjectItem } from "@/lib/store";
 import { withBase } from "@/lib/utils";
 
+// Filter chips: a project matches when any keyword appears in its title, category, client, or tags.
+const filters = [
+  { label: "All", slug: "all", keywords: [] as string[] },
+  { label: "Professional", slug: "professional", keywords: ["professional"] },
+  { label: "Indian Navy / Defense", slug: "navy", keywords: ["navy", "defense"] },
+  { label: "Observability / Cloud", slug: "observability", keywords: ["observability", "opentelemetry", "cloud", "infrastructure"] },
+  { label: "AI Systems", slug: "ai", keywords: ["ai-agent", "ai agent", "multi-agent"] },
+  { label: "Automation", slug: "automation", keywords: ["automation"] },
+  { label: "Data / R&D", slug: "data", keywords: ["data &", "r&d", "power bi"] },
+];
+
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [isContactOpen, setIsContactOpen] = useState(false);
+
+  // Deep links like /projects/?filter=navy preselect a filter.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get("filter");
+    const match = filters.find((f) => f.slug === slug);
+    if (match) setSelectedFilter(match.label);
+  }, []);
 
   useEffect(() => {
     HCCStore.getProjects(false).then((data) => {
@@ -21,23 +39,12 @@ export default function ProjectsPage() {
     });
   }, []);
 
-  const filters = [
-    "All",
-    "Professional",
-    "Indian Navy / Defense",
-    "R&D",
-    "AI / ML",
-    "Automation",
-    "Cloud / Infrastructure",
-    "Data / Analytics",
-    "Social Impact",
-  ];
-
   const filteredProjects = projects.filter((p) => {
-    const matchesFilter =
-      selectedFilter === "All" ||
-      p.category?.toLowerCase().includes(selectedFilter.toLowerCase()) ||
-      p.projectType?.toLowerCase().includes(selectedFilter.toLowerCase());
+    const active = filters.find((f) => f.label === selectedFilter);
+    const haystack = [p.title, p.category, p.projectType, p.clientName, p.companyName, p.classification, ...(p.tags || [])]
+      .join(" ")
+      .toLowerCase();
+    const matchesFilter = !active || active.keywords.length === 0 || active.keywords.some((k) => haystack.includes(k));
 
     const matchesSearch =
       !searchQuery ||
@@ -91,11 +98,11 @@ export default function ProjectsPage() {
 
         {/* Filter Pills */}
         <div className="flex flex-wrap gap-1.5 pb-6 border-b border-slate-200/70 mb-8">
-          {filters.map((f) => (
+          {filters.map(({ label: f }) => (
             <button
               key={f}
               onClick={() => setSelectedFilter(f)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition ${
                 selectedFilter === f
                   ? "bg-blue-600 text-white shadow-[0_1px_2px_rgba(28,25,23,0.04),0_12px_32px_-16px_rgb(var(--glow)/0.18)]"
                   : "bg-slate-100 text-slate-500 hover:bg-slate-100 hover:text-slate-900"

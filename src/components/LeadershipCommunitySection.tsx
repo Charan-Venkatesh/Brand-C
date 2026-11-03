@@ -9,6 +9,7 @@ export const LeadershipCommunitySection: React.FC = () => {
   const leadershipItems = [
     {
       title: "Hult Prize Global Challenge",
+      anchor: "hult-prize",
       role: "Top 3 / Campus Finalist",
       period: "2023",
       desc: "Presented project Bugginess—an autonomous drone-based agricultural pest monitoring and targeted precision spraying concept for sustainable farming.",
@@ -16,6 +17,7 @@ export const LeadershipCommunitySection: React.FC = () => {
     },
     {
       title: "Vedic Science & Culture Club",
+      anchor: "vedic-club",
       role: "Founder & President",
       period: "March 2024 – April 2025",
       desc: "Founded student organization coordinating weekly seminars, speaker sessions, leadership workshops, and personal development initiatives for 100+ members.",
@@ -23,6 +25,7 @@ export const LeadershipCommunitySection: React.FC = () => {
     },
     {
       title: "CrossRoads with Shazin Hijazy",
+      anchor: "crossroads",
       role: "Technical Support Lead",
       period: "June 2024 – June 2025",
       desc: "Led live streaming coordination, AV broadcast pipelines, and technical troubleshooting for professional digital media sessions.",
@@ -30,6 +33,7 @@ export const LeadershipCommunitySection: React.FC = () => {
     },
     {
       title: "Google Developer Student Club (GDSC)",
+      anchor: "gdsc",
       role: "Core Member & Workshop Facilitator",
       period: "2023 – 2025",
       desc: "Delivered flagship technical workshop on 'Drones — Exploring Innovation and Applications'. Mentored student engineers in Git, Python, and IoT systems.",
@@ -37,6 +41,7 @@ export const LeadershipCommunitySection: React.FC = () => {
     },
     {
       title: "Smart India Hackathon 2024",
+      anchor: "sih-2024",
       role: "Campus-Level Winning Team",
       period: "2024",
       desc: "Selected as campus-level winning team for rapid software prototyping and engineering problem solving under competitive hackathon timelines.",
@@ -70,6 +75,7 @@ export const LeadershipCommunitySection: React.FC = () => {
             return (
               <article
                 key={item.title}
+                id={item.anchor}
                 className="spotlight-card group rounded-3xl overflow-hidden bg-white border border-slate-200/70 hover:border-sky-300 transition duration-300 hover:-translate-y-1"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
@@ -102,6 +108,7 @@ export const LeadershipCommunitySection: React.FC = () => {
             return (
               <article
                 key={item.title}
+                id={item.anchor}
                 className="spotlight-card flex gap-4 p-5 rounded-3xl bg-white border border-slate-200/70 hover:border-sky-300 transition"
               >
                 <div className="w-11 h-11 shrink-0 rounded-2xl bg-gradient-to-br from-blue-100 to-sky-100 ring-1 ring-slate-200 text-blue-600 flex items-center justify-center">

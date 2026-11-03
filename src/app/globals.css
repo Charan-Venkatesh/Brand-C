@@ -163,3 +163,7 @@ body {
   backdrop-filter: blur(6px);
   box-shadow: inset -10px -14px 26px rgba(37, 99, 235, 0.25), 0 24px 50px -20px rgba(37, 99, 235, 0.45);
 }
+
+/* Anchored jumps land below the sticky nav */
+[id] { scroll-margin-top: 88px; }
+html { scroll-behavior: smooth; }

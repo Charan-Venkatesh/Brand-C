@@ -15,6 +15,7 @@ import {
   Trophy,
   MessageCircle,
   Phone,
+  ArrowUpRight,
 } from "lucide-react";
 import { CountUp, RoleTyper } from "@/components/SiteEffects";
 import { Globe3D } from "@/components/Globe3D";
@@ -30,11 +31,13 @@ interface HeroSectionProps {
   selectedCategory?: string;
 }
 
+// Each stat links to the evidence behind it.
+const home = (hash: string) => `${withBase("/")}#${hash}`;
 const stats = [
-  { value: 3, suffix: "", label: "Engineering roles", tint: "from-blue-50 to-white text-blue-700" },
-  { value: 5, suffix: "+", label: "Production systems", tint: "from-blue-50 to-white text-blue-700" },
-  { value: 3, suffix: "", label: "Naval bases served", tint: "from-blue-50 to-white text-blue-700" },
-  { value: 5, suffix: "", label: "Certifications", tint: "from-blue-50 to-white text-blue-700" },
+  { value: 3, suffix: "", label: "Engineering roles", cta: "See experience", href: home("experience") },
+  { value: 5, suffix: "+", label: "Production systems", cta: "See all projects", href: withBase("/projects/") },
+  { value: 3, suffix: "", label: "Naval bases served", cta: "See Navy projects", href: withBase("/projects/?filter=navy") },
+  { value: 5, suffix: "", label: "Certifications", cta: "See certifications", href: home("certifications") },
 ];
 
 const stack = [
@@ -42,7 +45,14 @@ const stack = [
   "FastAPI", "Power BI", "Azure", "Git", "SQL", "Shell", "Observability",
 ];
 
-const orgs = ["Accenture", "Indian Navy", "Efftronics Systems", "Andhra University", "Google DSC", "Hult Prize"];
+const orgs = [
+  { name: "Accenture", href: home("exp-joulestowatts") },
+  { name: "Indian Navy", href: withBase("/projects/?filter=navy") },
+  { name: "Efftronics Systems", href: home("exp-efftronics") },
+  { name: "Andhra University", href: home("education") },
+  { name: "Google DSC", href: home("gdsc") },
+  { name: "Hult Prize", href: home("hult-prize") },
+];
 
 const capabilities = [
   {
@@ -270,16 +280,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
         {/* Stats */}
         <div className="mt-16 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-3">
           {stats.map((s) => (
-            <div
+            <a
               key={s.label}
-              className={`rounded-3xl bg-gradient-to-br ${s.tint} border border-slate-200/70 px-5 py-5 shadow-sm`}
+              href={s.href}
+              className="group relative rounded-3xl bg-gradient-to-br from-blue-50 to-white border border-slate-200/70 px-5 py-5 shadow-sm hover:border-blue-300 hover:shadow-xl hover:shadow-blue-600/10 hover:-translate-y-1 transition duration-300"
             >
-              <div className="text-4xl sm:text-5xl font-black tracking-tight">
+              <ArrowUpRight className="absolute top-4 right-4 w-5 h-5 text-slate-300 transition group-hover:text-blue-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <div className="text-4xl sm:text-5xl font-black tracking-tight text-blue-700">
                 <CountUp to={s.value} />
                 {s.suffix}
               </div>
               <div className="text-xs sm:text-sm font-medium text-slate-600 mt-1">{s.label}</div>
-            </div>
+              <div className="mt-2 text-xs font-semibold text-blue-600 sm:opacity-0 sm:-translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition">
+                {s.cta} →
+              </div>
+            </a>
           ))}
         </div>
 
@@ -290,7 +305,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm sm:text-base font-black tracking-tight text-slate-400">
             {orgs.map((o) => (
-              <span key={o} className="hover:text-slate-900 transition">{o}</span>
+              <a
+                key={o.name}
+                href={o.href}
+                className="underline decoration-transparent decoration-2 underline-offset-4 hover:text-blue-700 hover:decoration-blue-300 transition"
+              >
+                {o.name}
+              </a>
             ))}
           </div>
         </div>
