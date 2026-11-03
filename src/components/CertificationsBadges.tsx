@@ -16,18 +16,18 @@ export const CertificationsBadges: React.FC = () => {
   }, []);
 
   return (
-    <section id="certifications" className="py-14 border-b border-slate-200 bg-white">
+    <section id="certifications" className="py-14 border-b border-white/10 bg-slate-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-xl mx-auto mb-10">
-          <div className="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-blue-600 mb-1.5">
+          <div className="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 mb-1.5">
             <ShieldCheck className="w-4 h-4" />
             <span>Verified Credentials</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
             Certifications & Accreditations
           </h2>
-          <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Authenticated professional certifications from Microsoft, Google, Tableau, Cisco, and SAP.
+          <p className="mt-1 text-xs sm:text-sm text-slate-400">
+            Professional certifications from Microsoft, Google, Cisco, and SAP.
           </p>
         </div>
 
@@ -35,11 +35,11 @@ export const CertificationsBadges: React.FC = () => {
           {certs.map((c) => (
             <div
               key={c.id}
-              className="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-300 hover:bg-blue-50/20 transition flex flex-col justify-between"
+              className="p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-sky-400/40 hover:bg-sky-400/5 transition flex flex-col justify-between"
             >
               <div>
                 {/* Certificate Image or Badge Preview */}
-                <div className="w-12 h-12 rounded-lg bg-white border border-slate-200 flex items-center justify-center mb-3 shadow-sm overflow-hidden">
+                <div className="w-12 h-12 rounded-lg bg-slate-950 border border-white/10 flex items-center justify-center mb-3 shadow-sm overflow-hidden">
                   {c.certificateImageUrl ? (
                     <img
                       src={c.certificateImageUrl}
@@ -50,14 +50,14 @@ export const CertificationsBadges: React.FC = () => {
                       }}
                     />
                   ) : (
-                    <Award className="w-6 h-6 text-blue-600" />
+                    <Award className="w-6 h-6 text-sky-400" />
                   )}
                 </div>
 
-                <h3 className="font-bold text-xs sm:text-sm text-slate-900 leading-snug">
+                <h3 className="font-bold text-xs sm:text-sm text-white leading-snug">
                   {c.name}
                 </h3>
-                <div className="text-xs font-semibold text-blue-600 mt-1">{c.issuer}</div>
+                <div className="text-xs font-semibold text-sky-400 mt-1">{c.issuer}</div>
 
                 {c.credentialId && (
                   <div className="text-[11px] text-slate-400 mt-1">ID: {c.credentialId}</div>
@@ -65,12 +65,12 @@ export const CertificationsBadges: React.FC = () => {
               </div>
 
               {c.credentialUrl && (
-                <div className="mt-4 pt-3 border-t border-slate-200/60">
+                <div className="mt-4 pt-3 border-t border-white/10">
                   <a
                     href={c.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1 text-[11px] font-bold text-blue-600 hover:text-blue-700 hover:underline"
+                    className="inline-flex items-center space-x-1 text-[11px] font-bold text-sky-400 hover:text-sky-200 hover:underline"
                   >
                     <span>Verify Credential</span>
                     <ExternalLink className="w-3 h-3" />

@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Download, Mail, Terminal, ExternalLink } from "lucide-react";
+import { Download, Mail } from "lucide-react";
 import { IS_STATIC, HCCStore } from "@/lib/store";
 import { withBase } from "@/lib/utils";
+import { BrandMark, Wordmark } from "@/components/Brand";
 
 interface NavigationProps {
   onOpenContact: () => void;
@@ -25,18 +26,12 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-950/80 backdrop-blur-xl text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand & Identity */}
-        <a href={withBase("/")} className="flex items-center space-x-3 group">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-600/30 group-hover:brightness-110 transition">
-            <Terminal className="w-4 h-4" />
-          </div>
-          <div>
-            <div className="flex items-center space-x-2">
-              <span className="font-bold text-sm tracking-tight text-white">
-                Charan Venkatesh Gorle
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-400 hidden lg:block">
-              Cloud • DevOps • Infrastructure • Observability
+        <a href={withBase("/")} className="flex items-center gap-2.5 group" aria-label="Home">
+          <BrandMark className="w-8 h-8 transition group-hover:scale-105" />
+          <div className="leading-tight">
+            <Wordmark className="text-lg text-white" />
+            <p className="text-[10px] text-slate-400 hidden lg:block tracking-wide">
+              Cloud · DevOps · Observability
             </p>
           </div>
         </a>

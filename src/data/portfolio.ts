@@ -201,6 +201,16 @@ export const profilePhoto = "photos/profile.webp";
 
 // Shown in the "Beyond the Terminal" gallery; the section hides itself when empty.
 // Example: { src: "photos/gdsc-workshop.jpg", caption: "GDSC drone workshop" }
+// Portrait used in the Story section.
+export const storyPortrait = "photos/portrait.webp";
+
+// Photos shown on leadership cards, keyed by initiative title.
+export const leadershipPhotos: Record<string, string> = {
+  "Hult Prize Global Challenge": "photos/hult-trophy.webp",
+  "Vedic Science & Culture Club": "photos/club-launch.webp",
+  "CrossRoads with Shazin Hijazy": "photos/crossroads-certificate.webp",
+};
+
 export const gallery: { src: string; caption: string }[] = [
   { src: "photos/club-launch.webp", caption: "Launching the Vedic Science & Culture Club at CONNECT 2K24, Andhra University" },
   { src: "photos/crossroads-certificate.webp", caption: "Certificate of appreciation — CrossRoads with Shazin Hijazy" },
@@ -209,4 +219,6 @@ export const gallery: { src: string; caption: string }[] = [
   { src: "photos/live-demo.webp", caption: "Walking a guest through a live product demo" },
   { src: "photos/connect-2k24-stage.webp", caption: "CONNECT 2K24 — club launch with faculty and student leaders" },
   { src: "photos/workshop-hall.webp", caption: "Full house for a campus technical workshop" },
+  { src: "photos/hult-team.webp", caption: "Hult Prize OnCampus — Andhra University" },
+  { src: "photos/community-group.webp", caption: "With the student community after a campus session" },
 ];

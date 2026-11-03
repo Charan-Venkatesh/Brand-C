@@ -9,7 +9,7 @@ import { withBase } from "@/lib/utils";
 const tileClass = (i: number) =>
   i === 0
     ? "sm:col-span-2 sm:row-span-2"
-    : i === 3 || i === 6
+    : [3, 6, 7, 8].includes(i)
       ? "sm:col-span-2"
       : "";
 
