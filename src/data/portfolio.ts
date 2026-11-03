@@ -197,8 +197,16 @@ export const staticOverview = {
 // ---------------------------------------------------------------- photos
 // Put image files in public/photos/ and reference them here by file name.
 // The hero shows profilePhoto (falls back to initials if the file is missing).
-export const profilePhoto = "photos/profile.jpg";
+export const profilePhoto = "photos/profile.webp";
 
 // Shown in the "Beyond the Terminal" gallery; the section hides itself when empty.
 // Example: { src: "photos/gdsc-workshop.jpg", caption: "GDSC drone workshop" }
-export const gallery: { src: string; caption: string }[] = [];
+export const gallery: { src: string; caption: string }[] = [
+  { src: "photos/club-launch.webp", caption: "Launching the Vedic Science & Culture Club at CONNECT 2K24, Andhra University" },
+  { src: "photos/crossroads-certificate.webp", caption: "Certificate of appreciation — CrossRoads with Shazin Hijazy" },
+  { src: "photos/student-session.webp", caption: "Interactive student tech session" },
+  { src: "photos/vignan-honour.webp", caption: "Honoured at Vignan's Institute of Engineering for Women" },
+  { src: "photos/live-demo.webp", caption: "Walking a guest through a live product demo" },
+  { src: "photos/connect-2k24-stage.webp", caption: "CONNECT 2K24 — club launch with faculty and student leaders" },
+  { src: "photos/workshop-hall.webp", caption: "Full house for a campus technical workshop" },
+];

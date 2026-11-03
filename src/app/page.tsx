@@ -49,11 +49,11 @@ export default function Home() {
         {/* 7. LEADERSHIP & COMMUNITY */}
         <LeadershipCommunitySection />
 
-        {/* 8. CERTIFICATIONS */}
-        <CertificationsBadges />
-
         {/* Photos */}
         <PhotoGallery />
+
+        {/* 8. CERTIFICATIONS */}
+        <CertificationsBadges />
 
         {/* 9. EDUCATION */}
         <EducationSection />
