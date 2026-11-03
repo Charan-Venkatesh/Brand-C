@@ -17,29 +17,29 @@ export const ResumeViewer: React.FC = () => {
   };
 
   return (
-    <section id="resume" className="py-20 border-b border-white/10 bg-slate-950">
+    <section id="resume" className="py-20 border-b border-slate-200/70 bg-gradient-to-b from-transparent to-indigo-50/40">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <div className="flex items-center space-x-2 text-sky-400 font-bold text-xs uppercase tracking-[0.2em] mb-1">
+            <div className="flex items-center space-x-2 text-indigo-600 font-bold text-xs uppercase tracking-[0.2em] mb-1">
               <FileText className="w-4 h-4" />
               <span>Tailored Resume</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               Curated Curriculum Vitae
             </h2>
           </div>
           <div className="flex items-center space-x-3">
             <button
               onClick={() => window.print()}
-              className="px-3.5 py-2 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition flex items-center space-x-1.5"
+              className="px-3.5 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 transition flex items-center space-x-1.5"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Print</span>
             </button>
             <button
               onClick={handleDownload}
-              className="px-4 py-2 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition flex items-center space-x-1.5"
+              className="px-4 py-2 rounded-lg text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-sm transition flex items-center space-x-1.5"
             >
               <Download className="w-3.5 h-3.5" />
               <span>{downloading ? "Downloading..." : "Download Official PDF"}</span>
@@ -48,7 +48,7 @@ export const ResumeViewer: React.FC = () => {
         </div>
 
         {/* Clean Light-Themed Resume Container */}
-        <div className="rounded-2xl p-6 sm:p-10 border border-white/10 bg-white shadow-2xl shadow-sky-500/10 ring-1 ring-white/10 space-y-6 text-xs text-slate-700">
+        <div className="rounded-2xl p-6 sm:p-10 card-soft space-y-6 text-xs text-slate-700">
           {/* Header */}
           <div className="border-b border-slate-200 pb-5 text-center sm:text-left sm:flex sm:justify-between sm:items-start">
             <div>

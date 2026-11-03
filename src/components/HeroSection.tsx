@@ -8,9 +8,11 @@ import {
   Zap,
   Activity,
   FileDown,
-  Layers,
+  ArrowRight,
   MapPin,
   Mail,
+  Anchor,
+  Trophy,
 } from "lucide-react";
 import { CountUp, RoleTyper } from "@/components/SiteEffects";
 import { HCCStore, ProfileData } from "@/lib/store";
@@ -24,15 +26,48 @@ interface HeroSectionProps {
 }
 
 const stats = [
-  { value: 3, suffix: "", label: "Engineering roles" },
-  { value: 5, suffix: "+", label: "Production systems" },
-  { value: 3, suffix: "", label: "Naval bases served" },
-  { value: 5, suffix: "", label: "Certifications" },
+  { value: 3, suffix: "", label: "Engineering roles", tint: "from-indigo-50 to-white text-indigo-600" },
+  { value: 5, suffix: "+", label: "Production systems", tint: "from-violet-50 to-white text-violet-600" },
+  { value: 3, suffix: "", label: "Naval bases served", tint: "from-pink-50 to-white text-pink-600" },
+  { value: 5, suffix: "", label: "Certifications", tint: "from-amber-50 to-white text-amber-600" },
 ];
 
 const stack = [
   "OpenTelemetry", "Neo4j", "Python", "Docker", "Linux", "CI/CD", "React",
   "FastAPI", "Power BI", "Azure", "Git", "SQL", "Shell", "Observability",
+];
+
+const capabilities = [
+  {
+    label: "Cloud",
+    desc: "Architecting reliable multi-region resources, managed storage, and scalable container environments.",
+    icon: Cloud,
+    tint: "bg-sky-100 text-sky-600",
+  },
+  {
+    label: "DevOps",
+    desc: "Continuous integration, automated build pipelines, containerized deployments, and reproducible artifacts.",
+    icon: Zap,
+    tint: "bg-violet-100 text-violet-600",
+  },
+  {
+    label: "Infrastructure",
+    desc: "Linux systems administration, networking fundamentals, storage provisioning, and secure configuration.",
+    icon: Server,
+    tint: "bg-emerald-100 text-emerald-600",
+  },
+  {
+    label: "Automation",
+    desc: "Eliminating repetitive operational toil with Python, shell scripting, API hooks, and automated testing.",
+    icon: Terminal,
+    tint: "bg-amber-100 text-amber-600",
+  },
+  {
+    label: "Observability / AI Systems",
+    desc: "Distributed tracing with OpenTelemetry, telemetry validation, dependency mapping, and log anomaly analysis.",
+    icon: Activity,
+    tint: "bg-pink-100 text-pink-600",
+  },
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
@@ -64,34 +99,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
     el.style.setProperty("--my", `${e.clientY - r.top}px`);
   };
 
-  const capabilities = [
-    {
-      label: "Cloud",
-      desc: "Architecting reliable multi-region resources, managed storage, and scalable container environments.",
-      icon: Cloud,
-    },
-    {
-      label: "DevOps",
-      desc: "Continuous integration, automated build pipelines, containerized deployments, and reproducible artifacts.",
-      icon: Zap,
-    },
-    {
-      label: "Infrastructure",
-      desc: "Linux systems administration, networking fundamentals, storage provisioning, and secure configuration.",
-      icon: Server,
-    },
-    {
-      label: "Automation",
-      desc: "Eliminating repetitive operational toil with Python, shell scripting, API hooks, and automated testing.",
-      icon: Terminal,
-    },
-    {
-      label: "Observability / AI Systems",
-      desc: "Distributed tracing with OpenTelemetry, telemetry validation, dependency mapping, and log anomaly analysis.",
-      icon: Activity,
-    },
-  ];
-
   const handleDownload = async () => {
     await HCCStore.downloadActiveResume();
     window.open("#resume", "_self");
@@ -103,45 +110,44 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
     <section
       ref={heroRef}
       onPointerMove={onPointerMove}
-      className="hero relative overflow-hidden bg-slate-950 text-white"
+      className="hero relative overflow-hidden bg-[#fbfaff] text-slate-900"
     >
-      {/* Background: aurora blobs, grid, cursor spotlight */}
+      {/* Background: pastel glows, dot grid, cursor spotlight */}
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div className="aurora aurora-1" />
         <div className="aurora aurora-2" />
         <div className="aurora aurora-3" />
-        <div className="hero-grid absolute inset-0" />
+        <div className="dot-grid absolute inset-0" />
         <div className="hero-spotlight absolute inset-0" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-14">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-20 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Identity */}
-          <div className="md:col-span-7 lg:col-span-8 space-y-6 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-slate-300 backdrop-blur">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full bg-white/80 border border-slate-200/80 shadow-sm text-xs font-medium text-slate-600 backdrop-blur">
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                </span>
+                Open to work
               </span>
-              <span className="text-emerald-300 font-semibold">Open to opportunities</span>
-              <span className="text-slate-600">•</span>
-              <MapPin className="w-3.5 h-3.5" />
+              <MapPin className="w-3.5 h-3.5 text-slate-400" />
               <span>{profile?.currentLocation || "Hyderabad, India"}</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.02]">
+            <h1 className="text-[2.75rem] sm:text-6xl lg:text-7xl font-black tracking-[-0.04em] leading-[0.98] text-slate-900">
               {profile?.fullName ? (
                 profile.fullName
               ) : (
                 <>
-                  Charan Venkatesh
-                  <br />
-                  <span className="text-gradient">Gorle</span>
+                  Charan Venkatesh <span className="text-gradient">Gorle</span>
                 </>
               )}
             </h1>
 
-            <div className="text-lg sm:text-2xl font-semibold text-sky-300 min-h-[1.75rem] sm:min-h-[2.25rem]">
+            <div className="text-lg sm:text-2xl font-bold text-indigo-600 min-h-[1.75rem] sm:min-h-[2.25rem]">
               {profile?.headline || (
                 <RoleTyper
                   roles={[
@@ -154,30 +160,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
               )}
             </div>
 
-            <p className="max-w-xl mx-auto md:mx-0 text-sm sm:text-base text-slate-400 leading-relaxed">
+            <p className="max-w-xl mx-auto lg:mx-0 text-base sm:text-lg text-slate-600 leading-relaxed">
               I trace failures through distributed AI-agent systems, ship software for naval
-              operations, and turn noisy telemetry into decisions. Now building toward
-              production-grade Cloud, DevOps and SRE.
+              operations, and turn noisy telemetry into decisions — now building toward
+              production-grade <span className="font-semibold text-slate-900">Cloud, DevOps and SRE</span>.
             </p>
 
-            <div className="pt-1 flex flex-wrap justify-center md:justify-start gap-3">
+            <div className="pt-1 flex flex-wrap justify-center lg:justify-start gap-3">
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-white text-slate-950 hover:bg-sky-100 shadow-lg shadow-sky-500/10 transition"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-bold bg-slate-900 text-white hover:bg-slate-800 shadow-xl shadow-slate-900/15 transition"
               >
-                <Layers className="w-4 h-4" />
-                <span>Explore Work</span>
+                <span>See my work</span>
+                <ArrowRight className="w-4 h-4 transition group-hover:translate-x-0.5" />
               </a>
               <button
                 onClick={onOpenContact}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:brightness-110 text-white shadow-lg shadow-blue-600/30 transition"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-bold bg-brand text-white shadow-xl shadow-violet-500/25 hover:brightness-110 transition"
               >
                 <Mail className="w-4 h-4" />
-                <span>Let&apos;s Connect</span>
+                <span>Let&apos;s talk</span>
               </button>
               <button
                 onClick={handleDownload}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 hover:bg-white/10 border border-white/15 text-white transition"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold bg-white border border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 shadow-sm transition"
               >
                 <FileDown className="w-4 h-4" />
                 <span>Resume</span>
@@ -185,60 +191,96 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
             </div>
           </div>
 
-          {/* Photo */}
-          <div className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end">
-            <div className="photo-ring relative w-56 h-56 sm:w-72 sm:h-72 rounded-full p-[3px]">
-              <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-900 flex items-center justify-center">
-                {photoOk ? (
-                  <img
-                    ref={imgRef}
-                    src={photo}
-                    alt={profile?.fullName || "Charan Venkatesh Gorle"}
-                    className="w-full h-full object-cover"
-                    onError={() => setPhotoOk(false)}
-                  />
-                ) : (
-                  <span className="text-6xl sm:text-7xl font-black text-gradient select-none">CG</span>
-                )}
+          {/* Photo card with floating highlights */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="relative w-[78%] max-w-[360px] sm:w-80 lg:w-[360px]">
+              <div className="photo-ring rounded-[2.25rem] p-[3px] rotate-[2.5deg] shadow-2xl shadow-violet-500/20">
+                <div className="relative aspect-[4/5] rounded-[2.1rem] overflow-hidden bg-gradient-to-br from-indigo-100 to-pink-100 flex items-center justify-center">
+                  {photoOk ? (
+                    <img
+                      ref={imgRef}
+                      src={photo}
+                      alt={profile?.fullName || "Charan Venkatesh Gorle"}
+                      className="w-full h-full object-cover -rotate-[2.5deg] scale-110"
+                      onError={() => setPhotoOk(false)}
+                    />
+                  ) : (
+                    <span className="text-7xl font-black text-gradient select-none">CG</span>
+                  )}
+                </div>
               </div>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/10 text-[11px] font-semibold text-slate-200 backdrop-blur shadow-xl">
-                Cloud · DevOps · SRE
+
+              {/* Floating chips */}
+              <div className="float-slow absolute -left-6 sm:-left-12 top-8 flex items-center gap-2.5 pl-2 pr-3.5 py-2 rounded-2xl bg-white/95 border border-slate-200/80 shadow-xl shadow-indigo-500/10 backdrop-blur">
+                <span className="w-8 h-8 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center">
+                  <Activity className="w-4 h-4" />
+                </span>
+                <div className="text-left leading-tight">
+                  <div className="text-[11px] text-slate-500">Now tracing</div>
+                  <div className="text-xs font-bold text-slate-900">OpenTelemetry · Neo4j</div>
+                </div>
+              </div>
+              <div className="float-slower absolute -right-3 sm:-right-6 top-[46%] flex items-center gap-2.5 pl-2 pr-3.5 py-2 rounded-2xl bg-white/95 border border-slate-200/80 shadow-xl shadow-indigo-500/10 backdrop-blur">
+                <span className="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center">
+                  <Anchor className="w-4 h-4" />
+                </span>
+                <div className="text-left leading-tight">
+                  <div className="text-[11px] text-slate-500">Shipped for</div>
+                  <div className="text-xs font-bold text-slate-900">Indian Navy</div>
+                </div>
+              </div>
+              <div className="float-slow absolute -left-3 sm:-left-8 -bottom-5 flex items-center gap-2.5 pl-2 pr-3.5 py-2 rounded-2xl bg-white/95 border border-slate-200/80 shadow-xl shadow-indigo-500/10 backdrop-blur">
+                <span className="w-8 h-8 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center">
+                  <Trophy className="w-4 h-4" />
+                </span>
+                <div className="text-left leading-tight">
+                  <div className="text-[11px] text-slate-500">Campus finalist</div>
+                  <div className="text-xs font-bold text-slate-900">Hult Prize</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-white/10 bg-white/10">
+        <div className="mt-16 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-3">
           {stats.map((s) => (
-            <div key={s.label} className="bg-slate-950/80 backdrop-blur px-5 py-5 text-center sm:text-left">
-              <div className="text-3xl sm:text-4xl font-black tracking-tight">
+            <div
+              key={s.label}
+              className={`rounded-3xl bg-gradient-to-br ${s.tint} border border-slate-200/70 px-5 py-5 shadow-sm`}
+            >
+              <div className="text-4xl sm:text-5xl font-black tracking-tight">
                 <CountUp to={s.value} />
-                <span className="text-sky-400">{s.suffix}</span>
+                {s.suffix}
               </div>
-              <div className="text-xs text-slate-400 mt-1">{s.label}</div>
+              <div className="text-xs sm:text-sm font-medium text-slate-600 mt-1">{s.label}</div>
             </div>
           ))}
         </div>
 
         {/* What I work on */}
         <div className="mt-16">
-          <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 mb-5">
-            What I Work On
+          <div className="flex items-end justify-between gap-4 mb-5">
+            <div>
+              <div className="text-xs font-bold uppercase tracking-[0.2em] text-indigo-600">What I work on</div>
+              <div className="mt-1 text-2xl sm:text-3xl font-black tracking-tight text-slate-900">
+                Five disciplines, one goal: <span className="text-gradient">reliability</span>
+              </div>
+            </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            {capabilities.map((c, i) => {
+            {capabilities.map((c) => {
               const Icon = c.icon;
               return (
                 <div
-                  key={i}
-                  className="spotlight-card p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-sky-400/40 hover:-translate-y-1 transition duration-300"
+                  key={c.label}
+                  className="spotlight-card card-soft p-5 rounded-3xl hover:-translate-y-1 transition duration-300"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500/30 to-cyan-400/20 text-sky-300 flex items-center justify-center mb-3 ring-1 ring-white/10">
-                    <Icon className="w-4 h-4" />
+                  <div className={`w-10 h-10 rounded-2xl ${c.tint} flex items-center justify-center mb-4`}>
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-bold text-sm text-white mb-1.5">{c.label}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">{c.desc}</p>
+                  <h3 className="font-bold text-sm text-slate-900 mb-1.5">{c.label}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{c.desc}</p>
                 </div>
               );
             })}
@@ -247,12 +289,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
       </div>
 
       {/* Tech marquee */}
-      <div className="relative border-t border-white/10 py-5 overflow-hidden marquee-mask">
-        <div className="marquee flex w-max gap-10 text-sm font-semibold text-slate-500">
+      <div className="relative border-y border-slate-200/70 bg-white/60 py-5 overflow-hidden marquee-mask">
+        <div className="marquee flex w-max gap-10 text-sm font-semibold text-slate-400">
           {[...stack, ...stack].map((t, i) => (
             <span key={i} className="flex items-center gap-10">
               {t}
-              <span className="text-sky-500/60">✦</span>
+              <span className="text-violet-400">✦</span>
             </span>
           ))}
         </div>

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020617;
-  --foreground: #f1f5f9;
+  --background: #fbfaff;
+  --foreground: #0f172a;
   --secondary-bg: #f8fafc;
   --secondary-text: #475569;
   --border-color: #e2e8f0;
@@ -16,8 +16,7 @@ body {
   color: var(--foreground);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   overflow-x: hidden;
-  selection-background-color: #dbeafe;
-  selection-color: #1e3a8a;
+
 }
 
 .command-gradient {
@@ -51,42 +50,45 @@ body {
   .reveal { opacity: 1 !important; transform: none !important; }
 }
 
-/* ---------------------------------------------------------------- hero */
+/* ---------------------------------------------------------------- brand (light, vibrant) */
+::selection { background: #e0e7ff; color: #312e81; }
+
 .text-gradient {
-  background: linear-gradient(100deg, #60a5fa 0%, #22d3ee 45%, #a78bfa 100%);
+  background: linear-gradient(100deg, #4f46e5 0%, #9333ea 40%, #db2777 75%, #f59e0b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+.bg-brand { background: linear-gradient(120deg, #4f46e5 0%, #7c3aed 35%, #db2777 75%, #f59e0b 100%); }
+
+/* Soft pastel glows behind sections */
 .aurora {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.45;
-  animation: drift 18s ease-in-out infinite alternate;
+  filter: blur(80px);
+  opacity: 0.55;
+  animation: drift 20s ease-in-out infinite alternate;
 }
-.aurora-1 { width: 520px; height: 520px; background: #2563eb; top: -180px; left: -120px; }
-.aurora-2 { width: 460px; height: 460px; background: #06b6d4; top: 80px; right: -160px; animation-delay: -6s; opacity: 0.3; }
-.aurora-3 { width: 380px; height: 380px; background: #7c3aed; bottom: -200px; left: 35%; animation-delay: -12s; opacity: 0.25; }
+.aurora-1 { width: 520px; height: 520px; background: #c7d2fe; top: -200px; left: -140px; }
+.aurora-2 { width: 460px; height: 460px; background: #fbcfe8; top: 40px; right: -160px; animation-delay: -6s; }
+.aurora-3 { width: 420px; height: 420px; background: #fde68a; bottom: -220px; left: 30%; animation-delay: -12s; opacity: 0.45; }
+.aurora-4 { width: 380px; height: 380px; background: #bae6fd; bottom: -160px; right: 10%; animation-delay: -9s; opacity: 0.5; }
 @keyframes drift {
   0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(60px, 40px) scale(1.1); }
-  100% { transform: translate(-40px, 20px) scale(0.95); }
+  50% { transform: translate(50px, 30px) scale(1.08); }
+  100% { transform: translate(-30px, 20px) scale(0.96); }
 }
-.hero-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+.dot-grid {
+  background-image: radial-gradient(rgba(79, 70, 229, 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse at 50% 35%, black 25%, transparent 72%);
 }
 .hero-spotlight {
-  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 30%), rgba(56, 189, 248, 0.12), transparent 60%);
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 30%), rgba(167, 139, 250, 0.18), transparent 60%);
 }
 .photo-ring {
-  background: conic-gradient(from var(--angle, 0deg), #2563eb, #22d3ee, #a78bfa, #2563eb);
-  animation: spin-ring 6s linear infinite;
-  box-shadow: 0 0 80px -10px rgba(34, 211, 238, 0.45);
+  background: conic-gradient(from var(--angle, 0deg), #4f46e5, #9333ea, #db2777, #f59e0b, #4f46e5);
+  animation: spin-ring 8s linear infinite;
 }
 @property --angle {
   syntax: "<angle>";
@@ -95,9 +97,23 @@ body {
 }
 @keyframes spin-ring { to { --angle: 360deg; } }
 
+.float-slow { animation: float 6s ease-in-out infinite; }
+.float-slower { animation: float 8s ease-in-out infinite; animation-delay: -3s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
 .marquee { animation: marquee 40s linear infinite; }
 .marquee-mask { mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
 @keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Soft elevated card */
+.card-soft {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -16px rgba(79, 70, 229, 0.18);
+}
 
 /* Cursor glow inside cards (position set by SiteEffects) */
 .spotlight-card { position: relative; isolation: isolate; }
@@ -109,12 +125,12 @@ body {
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s;
-  background: radial-gradient(320px circle at var(--x, 50%) var(--y, 50%), rgba(56, 189, 248, 0.14), transparent 60%);
+  background: radial-gradient(320px circle at var(--x, 50%) var(--y, 50%), rgba(139, 92, 246, 0.12), transparent 60%);
 }
 .spotlight-card:hover::before { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
-  .aurora, .photo-ring, .marquee { animation: none; }
+  .aurora, .photo-ring, .marquee, .float-slow, .float-slower { animation: none; }
 }
 
 @keyframes fadeIn {

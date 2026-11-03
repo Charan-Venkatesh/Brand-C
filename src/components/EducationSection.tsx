@@ -45,14 +45,14 @@ export const EducationSection: React.FC = () => {
   const items = educations.length > 0 ? educations : fallbackEducations;
 
   return (
-    <section id="education" className="py-14 border-b border-white/10 bg-slate-900/40">
+    <section id="education" className="py-14 border-b border-slate-200/70 bg-gradient-to-b from-indigo-50/40 to-transparent">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-xl mx-auto mb-8">
-          <div className="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-sky-400 mb-1.5">
+          <div className="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1.5">
             <GraduationCap className="w-4 h-4" />
             <span>Academic Background</span>
           </div>
-          <h2 className="text-2xl font-black text-white tracking-tight">
+          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
             Education
           </h2>
         </div>
@@ -61,17 +61,17 @@ export const EducationSection: React.FC = () => {
           {items.map((edu, i) => (
             <div
               key={i}
-              className="p-5 rounded-xl bg-slate-950 border border-white/10 shadow-sm flex flex-col justify-between"
+              className="p-5 rounded-xl bg-white border border-slate-200/70 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(79,70,229,0.18)] flex flex-col justify-between"
             >
               <div>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-white/[0.06] text-slate-400">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-500">
                   {edu.startYear} – {edu.endYear}
                 </span>
-                <h3 className="font-bold text-sm text-white mt-2">{edu.degree}</h3>
-                <div className="text-xs font-semibold text-sky-400 mt-0.5">{edu.specialization}</div>
-                <div className="text-[11px] text-slate-400 mt-0.5">{edu.institution}</div>
+                <h3 className="font-bold text-sm text-slate-900 mt-2">{edu.degree}</h3>
+                <div className="text-xs font-semibold text-indigo-600 mt-0.5">{edu.specialization}</div>
+                <div className="text-[11px] text-slate-500 mt-0.5">{edu.institution}</div>
               </div>
-              <p className="text-[11px] text-slate-400 mt-2 leading-relaxed">{edu.description}</p>
+              <p className="text-[11px] text-slate-500 mt-2 leading-relaxed">{edu.description}</p>
             </div>
           ))}
         </div>

@@ -48,17 +48,17 @@ export const LeadershipCommunitySection: React.FC = () => {
   const rest = leadershipItems.filter((i) => !leadershipPhotos[i.title]);
 
   return (
-    <section id="leadership" className="py-20 sm:py-24 border-b border-white/10 bg-slate-900/40">
+    <section id="leadership" className="py-20 sm:py-24 border-b border-slate-200/70 bg-gradient-to-b from-violet-50/50 to-transparent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-sky-400 mb-2">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-indigo-600 mb-2">
             <Users className="w-4 h-4" />
             <span>Community & Initiatives</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
             Beyond the job title
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-slate-400">
+          <p className="mt-2 text-sm sm:text-base text-slate-500">
             Founding communities, competing on global stages, and running the tech behind live events.
           </p>
         </div>
@@ -70,7 +70,7 @@ export const LeadershipCommunitySection: React.FC = () => {
             return (
               <article
                 key={item.title}
-                className="spotlight-card group rounded-3xl overflow-hidden bg-white/[0.03] border border-white/10 hover:border-sky-400/40 transition duration-300 hover:-translate-y-1"
+                className="spotlight-card group rounded-3xl overflow-hidden bg-white border border-slate-200/70 hover:border-violet-300 transition duration-300 hover:-translate-y-1"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img
@@ -79,16 +79,16 @@ export const LeadershipCommunitySection: React.FC = () => {
                     loading="lazy"
                     className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                  <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-950/70 border border-white/15 backdrop-blur text-[11px] font-semibold text-white">
-                    <Icon className="w-3.5 h-3.5 text-sky-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
+                  <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-950/70 border border-slate-200 backdrop-blur text-[11px] font-semibold text-white">
+                    <Icon className="w-3.5 h-3.5 text-indigo-600" />
                     {item.role}
                   </span>
                 </div>
                 <div className="p-5 -mt-6 relative">
                   <div className="text-[11px] font-semibold text-slate-500">{item.period}</div>
-                  <h3 className="mt-1 font-bold text-base text-white leading-snug">{item.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed mt-2">{item.desc}</p>
+                  <h3 className="mt-1 font-bold text-base text-slate-900 leading-snug">{item.title}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed mt-2">{item.desc}</p>
                 </div>
               </article>
             );
@@ -102,18 +102,18 @@ export const LeadershipCommunitySection: React.FC = () => {
             return (
               <article
                 key={item.title}
-                className="spotlight-card flex gap-4 p-5 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-sky-400/40 transition"
+                className="spotlight-card flex gap-4 p-5 rounded-3xl bg-white border border-slate-200/70 hover:border-violet-300 transition"
               >
-                <div className="w-11 h-11 shrink-0 rounded-2xl bg-gradient-to-br from-blue-500/30 to-cyan-400/20 ring-1 ring-white/10 text-sky-300 flex items-center justify-center">
+                <div className="w-11 h-11 shrink-0 rounded-2xl bg-gradient-to-br from-indigo-100 to-violet-100 ring-1 ring-slate-200 text-indigo-600 flex items-center justify-center">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="flex flex-wrap items-baseline gap-x-2">
-                    <h3 className="font-bold text-sm text-white">{item.title}</h3>
+                    <h3 className="font-bold text-sm text-slate-900">{item.title}</h3>
                     <span className="text-[11px] text-slate-500">{item.period}</span>
                   </div>
-                  <div className="text-xs font-semibold text-sky-400 mt-0.5">{item.role}</div>
-                  <p className="text-xs text-slate-400 leading-relaxed mt-2">{item.desc}</p>
+                  <div className="text-xs font-semibold text-indigo-600 mt-0.5">{item.role}</div>
+                  <p className="text-xs text-slate-500 leading-relaxed mt-2">{item.desc}</p>
                 </div>
               </article>
             );

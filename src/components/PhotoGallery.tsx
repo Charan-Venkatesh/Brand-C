@@ -41,7 +41,7 @@ export const PhotoGallery: React.FC = () => {
   if (gallery.length === 0) return null;
 
   return (
-    <section id="gallery" className="relative py-20 bg-slate-950 text-white overflow-hidden">
+    <section id="gallery" className="relative py-20 bg-white text-slate-900 overflow-hidden">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div className="aurora aurora-2" style={{ top: "auto", bottom: -200, opacity: 0.2 }} />
       </div>
@@ -49,7 +49,7 @@ export const PhotoGallery: React.FC = () => {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-sky-400 mb-2">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-indigo-600 mb-2">
               <Camera className="w-4 h-4" />
               <span>Beyond the Terminal</span>
             </div>
@@ -57,7 +57,7 @@ export const PhotoGallery: React.FC = () => {
               Leading rooms, <span className="text-gradient">not just systems</span>
             </h2>
           </div>
-          <p className="max-w-sm text-sm text-slate-400">
+          <p className="max-w-sm text-sm text-slate-500">
             Founding a student club, running technical sessions, and showing the work to the people it serves.
           </p>
         </div>
@@ -67,7 +67,7 @@ export const PhotoGallery: React.FC = () => {
             <button
               key={g.src}
               onClick={() => setOpen(i)}
-              className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900 text-left ${tileClass(i)}`}
+              className={`group relative overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-100 text-left ${tileClass(i)}`}
             >
               <img
                 src={withBase(`/${g.src}`)}
@@ -76,7 +76,7 @@ export const PhotoGallery: React.FC = () => {
                 className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/10 to-transparent opacity-90 sm:opacity-60 group-hover:opacity-90 transition" />
-              <div className="absolute inset-x-0 bottom-0 p-4 text-xs sm:text-sm font-semibold leading-snug text-white sm:translate-y-2 sm:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
+              <div className="absolute inset-x-0 bottom-0 p-4 text-xs sm:text-sm font-semibold leading-snug text-slate-900 sm:translate-y-2 sm:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
                 {g.caption}
               </div>
               <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/0 group-hover:ring-sky-400/50 transition" />
@@ -97,11 +97,11 @@ export const PhotoGallery: React.FC = () => {
             touchX.current = null;
           }}
         >
-          <button className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white" aria-label="Close">
+          <button className="absolute top-4 right-4 p-2.5 rounded-full bg-slate-100 hover:bg-white/20 text-slate-900" aria-label="Close">
             <X className="w-5 h-5" />
           </button>
           <button
-            className="hidden sm:flex absolute left-4 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white"
+            className="hidden sm:flex absolute left-4 p-3 rounded-full bg-slate-100 hover:bg-white/20 text-slate-900"
             aria-label="Previous photo"
             onClick={(e) => {
               e.stopPropagation();
@@ -111,7 +111,7 @@ export const PhotoGallery: React.FC = () => {
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
-            className="hidden sm:flex absolute right-4 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white"
+            className="hidden sm:flex absolute right-4 p-3 rounded-full bg-slate-100 hover:bg-white/20 text-slate-900"
             aria-label="Next photo"
             onClick={(e) => {
               e.stopPropagation();
@@ -127,7 +127,7 @@ export const PhotoGallery: React.FC = () => {
               alt={gallery[open].caption}
               className="max-h-[78vh] w-auto rounded-xl mx-auto shadow-2xl animate-[fadeIn_.35s_ease]"
             />
-            <figcaption className="mt-4 text-center text-sm text-slate-300">
+            <figcaption className="mt-4 text-center text-sm text-slate-600">
               {gallery[open].caption}
               <span className="ml-2 text-slate-500">
                 {open + 1} / {gallery.length}

@@ -6,7 +6,7 @@ import { SkillsRadar } from "@/components/SkillsRadar";
 
 export default function SkillsPage() {
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#090d16] text-slate-800 flex flex-col font-sans">
       <Navigation onOpenContact={() => {}} />
       <main className="flex-1 py-10">
         <SkillsRadar />

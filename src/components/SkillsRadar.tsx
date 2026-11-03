@@ -51,7 +51,7 @@ export const SkillsRadar: React.FC = () => {
               <Cpu className="w-4 h-4" />
               <span>Technical Skills Inventory</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Verified Technical Capabilities
             </h2>
           </div>
@@ -64,7 +64,7 @@ export const SkillsRadar: React.FC = () => {
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
                   activeCategory === g.category
                     ? "bg-cyan-500/15 text-cyan-400 border border-cyan-500/40"
-                    : "text-slate-400 hover:text-slate-200 border border-transparent"
+                    : "text-slate-500 hover:text-slate-700 border border-transparent"
                 }`}
               >
                 {g.category}
@@ -83,7 +83,7 @@ export const SkillsRadar: React.FC = () => {
                 className="p-5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-sm text-white">{skill.name}</span>
+                  <span className="font-bold text-sm text-slate-900">{skill.name}</span>
                   <span className="text-[11px] font-semibold text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800/40">
                     {skill.years} Yrs
                   </span>
@@ -101,7 +101,7 @@ export const SkillsRadar: React.FC = () => {
                   ))}
                 </div>
 
-                <p className="mt-2.5 text-xs text-slate-400 leading-relaxed">
+                <p className="mt-2.5 text-xs text-slate-500 leading-relaxed">
                   {skill.detail}
                 </p>
               </div>

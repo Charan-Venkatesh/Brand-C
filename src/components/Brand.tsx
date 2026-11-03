@@ -7,9 +7,9 @@ export const BrandMark: React.FC<{ className?: string }> = ({ className = "w-8 h
   <svg viewBox="0 0 32 32" className={className} aria-hidden>
     <defs>
       <linearGradient id="brand-g" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stopColor="#2563eb" />
-        <stop offset=".55" stopColor="#22d3ee" />
-        <stop offset="1" stopColor="#a78bfa" />
+        <stop offset="0" stopColor="#4f46e5" />
+        <stop offset=".55" stopColor="#9333ea" />
+        <stop offset="1" stopColor="#ec4899" />
       </linearGradient>
     </defs>
     <rect width="32" height="32" rx="9" fill="url(#brand-g)" />
