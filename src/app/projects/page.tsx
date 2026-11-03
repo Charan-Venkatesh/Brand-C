@@ -64,7 +64,7 @@ export default function ProjectsPage() {
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1">
+            <div className="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-1">
               <Layers className="w-4 h-4" />
               <span>Full Portfolio</span>
             </div>
@@ -83,7 +83,7 @@ export default function ProjectsPage() {
               placeholder="Search tech, title, or keyword..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 rounded-lg bg-slate-50/80 border border-slate-200/70 text-xs text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 outline-none"
+              className="w-full pl-9 pr-3 py-2 rounded-lg bg-slate-50/80 border border-slate-200/70 text-xs text-slate-900 placeholder:text-slate-400 focus:border-blue-500 outline-none"
             />
             <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
           </div>
@@ -97,7 +97,7 @@ export default function ProjectsPage() {
               onClick={() => setSelectedFilter(f)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
                 selectedFilter === f
-                  ? "bg-indigo-600 text-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(79,70,229,0.18)]"
+                  ? "bg-blue-600 text-white shadow-[0_1px_2px_rgba(28,25,23,0.04),0_12px_32px_-16px_rgb(var(--glow)/0.18)]"
                   : "bg-slate-100 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
               }`}
             >
@@ -118,13 +118,13 @@ export default function ProjectsPage() {
             {filteredProjects.map((p) => (
               <div
                 key={p.id}
-                className="p-6 rounded-2xl bg-white border border-slate-200/70 hover:border-indigo-300 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(79,70,229,0.18)] transition hover:shadow-md flex flex-col justify-between"
+                className="p-6 rounded-3xl bg-white border border-slate-200/70 hover:border-blue-300 shadow-[0_1px_2px_rgba(28,25,23,0.04),0_12px_32px_-16px_rgb(var(--glow)/0.18)] transition hover:shadow-md flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div>
                       <h2 className="text-base font-bold text-slate-900">{p.title}</h2>
-                      <div className="text-[11px] font-semibold text-indigo-600 mt-0.5 flex items-center space-x-1.5">
+                      <div className="text-[11px] font-semibold text-blue-600 mt-0.5 flex items-center space-x-1.5">
                         {p.clientName && <span>{p.clientName}</span>}
                         {p.companyName && !p.clientName && <span>{p.companyName}</span>}
                         <span>•</span>
@@ -132,7 +132,7 @@ export default function ProjectsPage() {
                       </div>
                     </div>
 
-                    <span className="px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-slate-100 text-slate-600 border border-slate-200/70 shrink-0">
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-slate-100 text-slate-600 border border-slate-200/70 shrink-0">
                       {p.classification || "PUBLIC"}
                     </span>
                   </div>
@@ -178,7 +178,7 @@ export default function ProjectsPage() {
                       {p.tags?.map((t, i) => (
                         <span
                           key={i}
-                          className="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200/70"
+                          className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200/70"
                         >
                           {t}
                         </span>

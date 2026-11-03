@@ -14,8 +14,13 @@ import {
   FileText,
   CornerDownLeft,
   FileStack,
+  MessageCircle,
+  Phone,
+  Users,
+  Download,
 } from "lucide-react";
-import { CONTACT_EMAIL, certifications, experiences, gallery, projects } from "@/data/portfolio";
+import { CONTACT_EMAIL, CONTACT_PHONE, GITHUB_URL, LINKEDIN_URL, certifications, experiences, gallery, projects } from "@/data/portfolio";
+import { telUrl, whatsappUrl } from "@/lib/contact";
 import { withBase } from "@/lib/utils";
 
 type Item = {
@@ -57,7 +62,11 @@ export const CommandPalette: React.FC = () => {
           );
         },
       },
-      { id: "a-github", group: "Actions", title: "Open GitHub", subtitle: "github.com/Charan-Venkatesh", icon: GitBranch, href: "https://github.com/Charan-Venkatesh" },
+      { id: "a-whatsapp", group: "Actions", title: "Chat on WhatsApp", subtitle: CONTACT_PHONE, icon: MessageCircle, href: whatsappUrl() },
+      { id: "a-call", group: "Actions", title: "Call Charan", subtitle: CONTACT_PHONE, icon: Phone, href: telUrl },
+      { id: "a-linkedin", group: "Actions", title: "Open LinkedIn", subtitle: "in/charan-venkatesh-gorle", icon: Users, href: LINKEDIN_URL },
+      { id: "a-github", group: "Actions", title: "Open GitHub", subtitle: "github.com/Charan-Venkatesh", icon: GitBranch, href: GITHUB_URL },
+      { id: "a-vcard", group: "Actions", title: "Save contact card", subtitle: "Add to phone contacts (.vcf)", icon: Download, href: withBase("/charan-venkatesh-gorle.vcf") },
       { id: "a-resume", group: "Actions", title: "View resume", icon: FileText, href: home("resume") },
 
       ...[
@@ -70,6 +79,7 @@ export const CommandPalette: React.FC = () => {
         ["certifications", "Certifications"],
         ["education", "Education"],
         ["resume", "Resume"],
+        ["contact", "Contact"],
       ].map(([id, title]) => ({ id: `s-${id}`, group: "Sections", title, icon: Hash, href: home(id) })),
 
       { id: "p-projects", group: "Pages", title: "All projects", subtitle: "Filterable case studies", icon: FileStack, href: withBase("/projects/") },
@@ -201,7 +211,7 @@ export const CommandPalette: React.FC = () => {
           <div
             role="dialog"
             aria-label="Search"
-            className="w-full max-w-xl overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-2xl shadow-indigo-500/20"
+            className="w-full max-w-xl overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-2xl shadow-blue-500/20"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 px-5 border-b border-slate-100">
@@ -242,7 +252,7 @@ export const CommandPalette: React.FC = () => {
                       onMouseMove={() => setActive(i)}
                       onClick={() => choose(item)}
                       className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-left transition ${
-                        i === active ? "bg-indigo-50" : ""
+                        i === active ? "bg-blue-50" : ""
                       }`}
                     >
                       <span
@@ -258,7 +268,7 @@ export const CommandPalette: React.FC = () => {
                           <span className="block text-xs text-slate-500 truncate">{item.subtitle}</span>
                         )}
                       </span>
-                      {i === active && <CornerDownLeft className="w-4 h-4 text-indigo-400 shrink-0" />}
+                      {i === active && <CornerDownLeft className="w-4 h-4 text-blue-400 shrink-0" />}
                     </button>
                   </React.Fragment>
                 );

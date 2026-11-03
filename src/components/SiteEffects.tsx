@@ -58,7 +58,7 @@ export const SiteEffects: React.FC = () => {
   return (
     <div
       aria-hidden
-      className="fixed top-0 left-0 z-[60] h-0.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-pink-500"
+      className="fixed top-0 left-0 z-[60] h-0.5 bg-gradient-to-r from-blue-500 via-sky-500 to-blue-500"
       style={{ width: `${progress * 100}%` }}
     />
   );
@@ -88,7 +88,7 @@ export const RoleTyper: React.FC<{ roles: string[] }> = ({ roles }) => {
   return (
     <span>
       {text}
-      <span className="inline-block w-0.5 h-[1em] -mb-0.5 ml-0.5 bg-violet-500 animate-pulse" />
+      <span className="inline-block w-0.5 h-[1em] -mb-0.5 ml-0.5 bg-sky-500 animate-pulse" />
     </span>
   );
 };

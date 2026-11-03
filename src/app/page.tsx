@@ -11,8 +11,11 @@ import { LeadershipCommunitySection } from "@/components/LeadershipCommunitySect
 import { CertificationsBadges } from "@/components/CertificationsBadges";
 import { EducationSection } from "@/components/EducationSection";
 import { BrandMark, Wordmark, BRAND_TAGLINE } from "@/components/Brand";
-import { CONTACT_EMAIL } from "@/data/portfolio";
+import { CONTACT_EMAIL, CONTACT_PHONE, GITHUB_URL, LINKEDIN_URL } from "@/data/portfolio";
 import { PhotoGallery } from "@/components/PhotoGallery";
+import { ContactSection } from "@/components/ContactSection";
+import { Globe3D } from "@/components/Globe3D";
+import { whatsappUrl, telUrl } from "@/lib/contact";
 import { ResumeViewer } from "@/components/ResumeViewer";
 import { ContactModal } from "@/components/ContactModal";
 import { Mail, FileDown, ArrowUp, Compass } from "lucide-react";
@@ -62,10 +65,13 @@ export default function Home() {
 
         {/* 10. BRAND CTA */}
         <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
-          <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[2.5rem] bg-brand px-6 py-16 sm:px-16 sm:py-24 text-center text-white shadow-2xl shadow-violet-500/30">
+          <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[2.5rem] bg-brand px-6 py-16 sm:px-16 sm:py-24 text-center text-white shadow-2xl shadow-sky-500/30">
             <div aria-hidden className="absolute inset-0 pointer-events-none">
               <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-white/20 blur-3xl" />
-              <div className="absolute -bottom-32 -right-16 w-96 h-96 rounded-full bg-amber-300/30 blur-3xl" />
+              <Globe3D tone="dark" points={140} className="absolute -right-24 -bottom-24 w-[520px] h-[520px] opacity-40" />
+              <span className="orb float-slow w-20 h-20 top-8 left-8 opacity-90" />
+              <span className="orb-glass orb float-slower w-12 h-12 bottom-10 left-[22%]" />
+              <div className="absolute -bottom-32 -right-16 w-96 h-96 rounded-full bg-sky-300/30 blur-3xl" />
               <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(rgba(255,255,255,0.5)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
             </div>
             <div className="relative">
@@ -103,6 +109,9 @@ export default function Home() {
 
         {/* 11. RESUME & CONTACT SECTION */}
         <ResumeViewer />
+
+        {/* 12. CONTACT */}
+        <ContactSection />
       </main>
 
       {/* Recruiter Contact Modal */}
@@ -142,7 +151,10 @@ export default function Home() {
             <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 mb-3">Connect</div>
             <ul className="space-y-2 text-sm text-slate-500">
               <li><a href={`mailto:${CONTACT_EMAIL}`} title={CONTACT_EMAIL} className="hover:text-slate-900 transition">Email</a></li>
-              <li><a href="https://github.com/Charan-Venkatesh" target="_blank" rel="noreferrer" className="hover:text-slate-900 transition">GitHub</a></li>
+              <li><a href={telUrl} className="hover:text-slate-900 transition">Call {CONTACT_PHONE}</a></li>
+              <li><a href={whatsappUrl()} target="_blank" rel="noreferrer" className="hover:text-slate-900 transition">WhatsApp</a></li>
+              <li><a href={LINKEDIN_URL} target="_blank" rel="noreferrer" className="hover:text-slate-900 transition">LinkedIn</a></li>
+              <li><a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:text-slate-900 transition">GitHub</a></li>
               <li><button onClick={() => setIsContactOpen(true)} className="hover:text-slate-900 transition">Contact form</button></li>
             </ul>
           </div>

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfaff;
-  --foreground: #0f172a;
+  --background: #ffffff;
+  --foreground: #0b1220;
   --secondary-bg: #f8fafc;
   --secondary-text: #475569;
   --border-color: #e2e8f0;
@@ -50,16 +50,25 @@ body {
   .reveal { opacity: 1 !important; transform: none !important; }
 }
 
-/* ---------------------------------------------------------------- brand (light, vibrant) */
-::selection { background: #e0e7ff; color: #312e81; }
+:root {
+  /* Brand tokens: white + blue */
+  --g1: #1e3a8a; --g2: #1d4ed8; --g3: #2563eb; --g4: #0ea5e9;
+  --b1: #1e3a8a; --b2: #1d4ed8; --b3: #2563eb; --b4: #3b82f6;
+  --a1: #dbeafe; --a2: #e0f2fe; --a3: #bfdbfe; --a4: #eff6ff;
+  --r1: #1e3a8a; --r2: #2563eb; --r3: #38bdf8; --r4: #93c5fd;
+  --glow: 37 99 235;
+}
+
+/* ---------------------------------------------------------------- brand (white + blue) */
+::selection { background: #dbeafe; color: #1e3a8a; }
 
 .text-gradient {
-  background: linear-gradient(100deg, #4f46e5 0%, #9333ea 40%, #db2777 75%, #f59e0b 100%);
+  background: linear-gradient(100deg, var(--g1) 0%, var(--g2) 38%, var(--g3) 62%, var(--g4) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.bg-brand { background: linear-gradient(120deg, #4f46e5 0%, #7c3aed 35%, #db2777 75%, #f59e0b 100%); }
+.bg-brand { background: linear-gradient(120deg, var(--b1) 0%, var(--b2) 38%, var(--b3) 70%, var(--b4) 100%); }
 
 /* Soft pastel glows behind sections */
 .aurora {
@@ -69,25 +78,25 @@ body {
   opacity: 0.55;
   animation: drift 20s ease-in-out infinite alternate;
 }
-.aurora-1 { width: 520px; height: 520px; background: #c7d2fe; top: -200px; left: -140px; }
-.aurora-2 { width: 460px; height: 460px; background: #fbcfe8; top: 40px; right: -160px; animation-delay: -6s; }
-.aurora-3 { width: 420px; height: 420px; background: #fde68a; bottom: -220px; left: 30%; animation-delay: -12s; opacity: 0.45; }
-.aurora-4 { width: 380px; height: 380px; background: #bae6fd; bottom: -160px; right: 10%; animation-delay: -9s; opacity: 0.5; }
+.aurora-1 { width: 520px; height: 520px; background: var(--a1); top: -200px; left: -140px; }
+.aurora-2 { width: 460px; height: 460px; background: var(--a2); top: 40px; right: -160px; animation-delay: -6s; }
+.aurora-3 { width: 420px; height: 420px; background: var(--a3); bottom: -220px; left: 30%; animation-delay: -12s; opacity: 0.45; }
+.aurora-4 { width: 380px; height: 380px; background: var(--a4); bottom: -160px; right: 10%; animation-delay: -9s; opacity: 0.5; }
 @keyframes drift {
   0% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(50px, 30px) scale(1.08); }
   100% { transform: translate(-30px, 20px) scale(0.96); }
 }
 .dot-grid {
-  background-image: radial-gradient(rgba(79, 70, 229, 0.14) 1px, transparent 1px);
+  background-image: radial-gradient(rgb(var(--glow) / 0.13) 1px, transparent 1px);
   background-size: 22px 22px;
   mask-image: radial-gradient(ellipse at 50% 35%, black 25%, transparent 72%);
 }
 .hero-spotlight {
-  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 30%), rgba(167, 139, 250, 0.18), transparent 60%);
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 30%), rgb(var(--glow) / 0.16), transparent 60%);
 }
 .photo-ring {
-  background: conic-gradient(from var(--angle, 0deg), #4f46e5, #9333ea, #db2777, #f59e0b, #4f46e5);
+  background: conic-gradient(from var(--angle, 0deg), var(--r1), var(--r2), var(--r3), var(--r4), var(--r1));
   animation: spin-ring 8s linear infinite;
 }
 @property --angle {
@@ -111,8 +120,8 @@ body {
 /* Soft elevated card */
 .card-soft {
   background: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -16px rgba(79, 70, 229, 0.18);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -16px rgb(var(--glow) / 0.22);
 }
 
 /* Cursor glow inside cards (position set by SiteEffects) */
@@ -125,7 +134,7 @@ body {
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s;
-  background: radial-gradient(320px circle at var(--x, 50%) var(--y, 50%), rgba(139, 92, 246, 0.12), transparent 60%);
+  background: radial-gradient(320px circle at var(--x, 50%) var(--y, 50%), rgb(var(--glow) / 0.12), transparent 60%);
 }
 .spotlight-card:hover::before { opacity: 1; }
 
@@ -136,4 +145,21 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.98); }
   to { opacity: 1; transform: none; }
+}
+
+/* Glossy 3D spheres */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 32% 28%, #ffffff 0%, #dbeafe 10%, #60a5fa 36%, #1d4ed8 68%, #172554 100%);
+  box-shadow:
+    inset -14px -18px 34px rgba(15, 23, 42, 0.35),
+    inset 8px 10px 20px rgba(255, 255, 255, 0.35),
+    0 30px 60px -18px rgba(37, 99, 235, 0.55);
+}
+.orb-glass {
+  background: radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.95) 0%, rgba(219, 234, 254, 0.7) 18%, rgba(147, 197, 253, 0.35) 55%, rgba(37, 99, 235, 0.25) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  box-shadow: inset -10px -14px 26px rgba(37, 99, 235, 0.25), 0 24px 50px -20px rgba(37, 99, 235, 0.45);
 }

@@ -2,7 +2,12 @@
 // (e.g. the GitHub Pages build). Edit this file to update the public site.
 import type { CertificationItem, ExperienceItem, ProjectItem } from "@/lib/store";
 
-export const CONTACT_EMAIL = "gorle.charanvenkatesh@gmail.com";
+export const CONTACT_EMAIL = "charanvenkateshgorle@gmail.com";
+export const CONTACT_PHONE = "+91 77807 60730";
+export const CONTACT_PHONE_TEL = "+917780760730";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/charan-venkatesh-gorle/";
+export const GITHUB_URL = "https://github.com/Charan-Venkatesh";
+export const SITE_URL = "https://charan-venkatesh.github.io/Brand-C/";
 
 export const projects: ProjectItem[] = [
   {

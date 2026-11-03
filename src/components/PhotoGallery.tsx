@@ -49,11 +49,11 @@ export const PhotoGallery: React.FC = () => {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-indigo-600 mb-2">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">
               <Camera className="w-4 h-4" />
               <span>Beyond the Terminal</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight">
               Leading rooms, <span className="text-gradient">not just systems</span>
             </h2>
           </div>
@@ -67,7 +67,7 @@ export const PhotoGallery: React.FC = () => {
             <button
               key={g.src}
               onClick={() => setOpen(i)}
-              className={`group relative overflow-hidden rounded-3xl border border-slate-200/70 bg-slate-100 text-left shadow-[0_12px_32px_-16px_rgba(79,70,229,0.25)] ${tileClass(i)}`}
+              className={`group relative overflow-hidden rounded-3xl border border-slate-200/70 bg-slate-100 text-left shadow-[0_12px_32px_-16px_rgb(var(--glow)/0.25)] ${tileClass(i)}`}
             >
               <img
                 src={withBase(`/${g.src}`)}
@@ -79,7 +79,7 @@ export const PhotoGallery: React.FC = () => {
               <div className="absolute inset-x-0 bottom-0 p-4 text-xs sm:text-sm font-semibold leading-snug text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
                 {g.caption}
               </div>
-              <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/0 group-hover:ring-violet-400/70 transition" />
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/0 group-hover:ring-sky-400/70 transition" />
             </button>
           ))}
         </div>

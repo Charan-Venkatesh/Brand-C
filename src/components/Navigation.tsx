@@ -18,6 +18,7 @@ const links = [
   { id: "leadership", label: "Leadership" },
   { id: "gallery", label: "Photos" },
   { id: "resume", label: "Resume" },
+  { id: "contact", label: "Contact" },
 ];
 
 const home = (hash: string) => `${withBase("/")}#${hash}`;
@@ -97,7 +98,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
           {!IS_STATIC && (
             <a
               href={withBase("/admin/dashboard")}
-              className="hidden sm:inline-flex px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition"
+              className="hidden sm:inline-flex px-2.5 py-1.5 rounded-full text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition"
             >
               Admin
             </a>
@@ -105,12 +106,12 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
 
           <button
             onClick={openSearch}
-            className="group inline-flex items-center gap-2 h-9 pl-3 pr-2 rounded-full bg-white border border-slate-200 text-slate-500 hover:border-indigo-300 hover:text-slate-900 shadow-sm transition"
+            className="group inline-flex items-center gap-2 h-9 pl-3 pr-2 rounded-full bg-white border border-slate-200 text-slate-500 hover:border-blue-300 hover:text-slate-900 shadow-sm transition"
             aria-label="Search"
           >
             <Search className="w-4 h-4" />
             <span className="hidden sm:inline text-xs font-medium">Search</span>
-            <kbd className="hidden sm:inline-flex px-1.5 py-0.5 rounded-md bg-slate-100 text-[10px] font-semibold text-slate-500 group-hover:bg-indigo-50 group-hover:text-indigo-600">
+            <kbd className="hidden sm:inline-flex px-1.5 py-0.5 rounded-md bg-slate-100 text-[10px] font-semibold text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600">
               {isMac ? "⌘K" : "Ctrl K"}
             </kbd>
           </button>
@@ -163,7 +164,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
                 onClick={() => setMenuOpen(false)}
                 className="flex items-baseline gap-4 py-3 border-b border-slate-200/70 text-3xl font-black tracking-tight text-slate-900"
               >
-                <span className="text-xs font-bold text-indigo-500 w-6">{String(i + 1).padStart(2, "0")}</span>
+                <span className="text-xs font-bold text-blue-500 w-6">{String(i + 1).padStart(2, "0")}</span>
                 {l.label}
               </a>
             ))}
@@ -184,7 +185,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
                 setMenuOpen(false);
                 onOpenContact();
               }}
-              className="inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-brand text-sm font-bold text-white shadow-lg shadow-violet-500/25"
+              className="inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-brand text-sm font-bold text-white shadow-lg shadow-sky-500/25"
             >
               <Mail className="w-4 h-4" />
               Let&apos;s talk

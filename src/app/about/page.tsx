@@ -20,7 +20,7 @@ export default function AboutPage() {
         </a>
 
         <div className="mb-8">
-          <div className="text-xs text-indigo-600 font-bold uppercase tracking-wider mb-1 flex items-center space-x-1.5">
+          <div className="text-xs text-blue-600 font-bold uppercase tracking-wider mb-1 flex items-center space-x-1.5">
             <Terminal className="w-4 h-4" />
             <span>Professional Background</span>
           </div>
@@ -28,12 +28,12 @@ export default function AboutPage() {
             About Charan Venkatesh Gorle
           </h1>
           <div className="text-xs text-slate-500 mt-1.5 flex items-center space-x-2">
-            <MapPin className="w-3.5 h-3.5 text-indigo-600" />
+            <MapPin className="w-3.5 h-3.5 text-blue-600" />
             <span>Hyderabad, India • Open to Hyderabad / India / Remote Roles</span>
           </div>
         </div>
 
-        <div className="space-y-6 text-sm text-slate-600 leading-relaxed rounded-2xl border border-slate-200/70 bg-white p-6 sm:p-10 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(79,70,229,0.18)]">
+        <div className="space-y-6 text-sm text-slate-600 leading-relaxed rounded-2xl border border-slate-200/70 bg-white p-6 sm:p-10 shadow-[0_1px_2px_rgba(28,25,23,0.04),0_12px_32px_-16px_rgb(var(--glow)/0.18)]">
           <div>
             <h2 className="text-lg font-bold text-slate-900 mb-2">Who Am I?</h2>
             <p>
@@ -60,7 +60,7 @@ export default function AboutPage() {
           </div>
 
           <div className="pt-6 border-t border-slate-200/70">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-3 flex items-center space-x-1.5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-blue-600 mb-3 flex items-center space-x-1.5">
               <GraduationCap className="w-4 h-4" />
               <span>Education</span>
             </h3>

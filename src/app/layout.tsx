@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteEffects } from "@/components/SiteEffects";
 import { CommandPalette } from "@/components/CommandPalette";
+import { FloatingWhatsApp } from "@/components/ContactSection";
+import { CONTACT_EMAIL, CONTACT_PHONE_TEL, GITHUB_URL, LINKEDIN_URL } from "@/data/portfolio";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +49,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <SiteEffects />
         <CommandPalette />
+        <FloatingWhatsApp />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Charan Venkatesh Gorle",
+              jobTitle: "Cloud / DevOps / Observability Engineer",
+              url: SITE_URL,
+              email: `mailto:${CONTACT_EMAIL}`,
+              telephone: CONTACT_PHONE_TEL,
+              address: { "@type": "PostalAddress", addressLocality: "Hyderabad", addressCountry: "IN" },
+              sameAs: [LINKEDIN_URL, GITHUB_URL],
+            }),
+          }}
+        />
         {children}
       </body>
     </html>

@@ -21,7 +21,7 @@ export default function JourneyPage() {
         </a>
 
         <div className="mb-10">
-          <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1">
+          <div className="text-xs font-bold uppercase tracking-wider text-blue-600 mb-1">
             Career Story & Milestones
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
@@ -42,7 +42,7 @@ export default function JourneyPage() {
           <div className="mt-4">
             <a
               href={withBase("/contact")}
-              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(79,70,229,0.18)] transition"
+              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-full text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-[0_1px_2px_rgba(28,25,23,0.04),0_12px_32px_-16px_rgb(var(--glow)/0.18)] transition"
             >
               <span>Connect Regarding Opportunities</span>
             </a>

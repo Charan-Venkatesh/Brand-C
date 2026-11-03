@@ -46,7 +46,7 @@ export const MyStorySection: React.FC = () => {
         {/* Portrait */}
         <div className="md:col-span-5">
           <div className="relative max-w-sm mx-auto">
-            <div aria-hidden className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-indigo-300/60 via-pink-200/60 to-amber-200/60 blur-2xl" />
+            <div aria-hidden className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-blue-300/60 via-blue-200/60 to-sky-200/60 blur-2xl" />
             <div className="relative rounded-[1.75rem] overflow-hidden border border-slate-200/70 aspect-[4/5] bg-slate-100">
               <img
                 src={withBase(`/${storyPortrait}`)}
@@ -64,7 +64,7 @@ export const MyStorySection: React.FC = () => {
 
         {/* Story */}
         <div className="md:col-span-7">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-indigo-600 mb-4">
+          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-4">
             <BookOpen className="w-4 h-4" />
             <span>My Story</span>
           </div>
@@ -86,9 +86,9 @@ export const MyStorySection: React.FC = () => {
               return (
                 <div
                   key={p.title}
-                  className="spotlight-card p-4 rounded-2xl bg-white border border-slate-200/70 hover:border-violet-300 transition"
+                  className="spotlight-card p-4 rounded-2xl bg-white border border-slate-200/70 hover:border-sky-300 transition"
                 >
-                  <Icon className="w-5 h-5 text-indigo-600 mb-2" />
+                  <Icon className="w-5 h-5 text-blue-600 mb-2" />
                   <div className="text-sm font-bold text-slate-900">{p.title}</div>
                   <div className="text-xs text-slate-500 mt-1 leading-relaxed">{p.desc}</div>
                 </div>
@@ -99,7 +99,7 @@ export const MyStorySection: React.FC = () => {
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <a
               href={withBase("/about")}
-              className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 hover:text-indigo-600 transition"
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-slate-900 hover:text-blue-600 transition"
             >
               <span>Full background</span>
               <ArrowRight className="w-4 h-4" />

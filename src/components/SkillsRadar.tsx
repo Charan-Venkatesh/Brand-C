@@ -47,7 +47,7 @@ export const SkillsRadar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
           <div>
-            <div className="flex items-center space-x-2 text-cyan-400 font-bold text-xs uppercase tracking-widest mb-1.5">
+            <div className="flex items-center space-x-2 text-sky-400 font-bold text-xs uppercase tracking-widest mb-1.5">
               <Cpu className="w-4 h-4" />
               <span>Technical Skills Inventory</span>
             </div>
@@ -63,7 +63,7 @@ export const SkillsRadar: React.FC = () => {
                 onClick={() => setActiveCategory(g.category)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
                   activeCategory === g.category
-                    ? "bg-cyan-500/15 text-cyan-400 border border-cyan-500/40"
+                    ? "bg-sky-500/15 text-sky-400 border border-sky-500/40"
                     : "text-slate-500 hover:text-slate-700 border border-transparent"
                 }`}
               >
@@ -84,7 +84,7 @@ export const SkillsRadar: React.FC = () => {
               >
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-sm text-slate-900">{skill.name}</span>
-                  <span className="text-[11px] font-semibold text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-800/40">
+                  <span className="text-[11px] font-semibold text-sky-400 bg-sky-950/80 px-2 py-0.5 rounded-full border border-sky-800/40">
                     {skill.years} Yrs
                   </span>
                 </div>
@@ -95,7 +95,7 @@ export const SkillsRadar: React.FC = () => {
                     <div
                       key={star}
                       className={`h-1.5 flex-1 rounded-full ${
-                        star <= skill.level ? "bg-cyan-400" : "bg-slate-800"
+                        star <= skill.level ? "bg-sky-400" : "bg-slate-800"
                       }`}
                     />
                   ))}

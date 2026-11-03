@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Mail, Send, CheckCircle2 } from "lucide-react";
-import { HCCStore } from "@/lib/store";
+import { X, Mail, Send, CheckCircle2, MessageCircle, Phone } from "lucide-react";
+import { HCCStore, IS_STATIC } from "@/lib/store";
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/data/portfolio";
+import { inquiryBody, mailtoUrl, telUrl, whatsappUrl } from "@/lib/contact";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -22,16 +24,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
   if (!isOpen) return null;
 
+  const inquiry = {
+    senderName: formData.name,
+    senderEmail: formData.email,
+    companyName: formData.company,
+    roleInterestedIn: formData.roleInterest,
+    message: formData.message,
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    await HCCStore.submitInquiry({
-      senderName: formData.name,
-      senderEmail: formData.email,
-      companyName: formData.company,
-      roleInterestedIn: formData.roleInterest,
-      message: formData.message,
-    });
+    await HCCStore.submitInquiry(inquiry);
     setSending(false);
     setSubmitted(true);
   };
@@ -51,16 +55,47 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3">
               <CheckCircle2 className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900">Inquiry Dispatched</h3>
-            <p className="mt-2 text-xs text-slate-500">
-              Thank you, <span className="font-semibold text-slate-900">{formData.name}</span>. Your message has been received directly by Charan Venkatesh Gorle.
+            <h3 className="text-lg font-bold text-slate-900">
+              {IS_STATIC ? "Almost there — press Send" : "Message sent"}
+            </h3>
+            <p className="mt-2 text-sm text-slate-500">
+              {IS_STATIC ? (
+                <>
+                  Thanks, <span className="font-semibold text-slate-900">{formData.name}</span>. Your email app
+                  opened with the message ready to {CONTACT_EMAIL}. Didn&apos;t open? Send it on WhatsApp instead.
+                </>
+              ) : (
+                <>
+                  Thanks, <span className="font-semibold text-slate-900">{formData.name}</span>. Charan will get back to you soon.
+                </>
+              )}
             </p>
+            {IS_STATIC && (
+              <div className="mt-5 flex flex-col sm:flex-row gap-2 justify-center">
+                <a
+                  href={whatsappUrl(inquiryBody(inquiry))}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Send on WhatsApp
+                </a>
+                <a
+                  href={mailtoUrl(inquiry)}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition"
+                >
+                  <Mail className="w-4 h-4" />
+                  Open email again
+                </a>
+              </div>
+            )}
             <button
               onClick={() => {
                 setSubmitted(false);
                 onClose();
               }}
-              className="mt-6 px-5 py-2 rounded-lg text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(79,70,229,0.18)]"
+              className="mt-6 px-5 py-2 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-[0_1px_2px_rgba(28,25,23,0.04),0_12px_32px_-16px_rgb(var(--glow)/0.18)]"
             >
               Close Window
             </button>
@@ -68,7 +103,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         ) : (
           <div>
             <div className="mb-5">
-              <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1 flex items-center space-x-1.5">
+              <div className="text-xs font-bold uppercase tracking-wider text-blue-600 mb-1 flex items-center space-x-1.5">
                 <Mail className="w-4 h-4" />
                 <span>Recruiter & Hiring Outreach</span>
               </div>
@@ -80,6 +115,23 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               </p>
             </div>
 
+            <div className="mb-5 grid grid-cols-2 gap-2">
+              <a
+                href={whatsappUrl()}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition"
+              >
+                <MessageCircle className="w-4 h-4" /> WhatsApp
+              </a>
+              <a
+                href={telUrl}
+                className="inline-flex items-center justify-center gap-2 py-2.5 rounded-full text-xs font-bold bg-slate-50 text-slate-700 border border-slate-200 hover:bg-slate-100 transition"
+              >
+                <Phone className="w-4 h-4" /> {CONTACT_PHONE}
+              </a>
+            </div>
+
             <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
               <div>
                 <label className="block text-slate-600 font-semibold mb-1">Your Name</label>
@@ -89,7 +141,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   placeholder="e.g. Hiring Manager / Talent Lead"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-indigo-500 outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-blue-500 outline-none"
                 />
               </div>
 
@@ -102,7 +154,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                     placeholder="recruiter@company.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-indigo-500 outline-none"
+                    className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-blue-500 outline-none"
                   />
                 </div>
                 <div>
@@ -113,7 +165,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                     placeholder="e.g. Enterprise Cloud Org"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-indigo-500 outline-none"
+                    className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-blue-500 outline-none"
                   />
                 </div>
               </div>
@@ -123,7 +175,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 <select
                   value={formData.roleInterest}
                   onChange={(e) => setFormData({ ...formData, roleInterest: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-indigo-500 outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-blue-500 outline-none"
                 >
                   <option>Cloud Engineer</option>
                   <option>DevOps Engineer</option>
@@ -143,7 +195,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   placeholder="Share details about the role, technical scope, and team..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-indigo-500 outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-slate-50/80 border border-slate-300 text-slate-900 focus:border-blue-500 outline-none"
                 />
               </div>
 
@@ -151,10 +203,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 <button
                   type="submit"
                   disabled={sending}
-                  className="w-full py-2.5 rounded-lg text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(79,70,229,0.18)] transition flex items-center justify-center space-x-2 disabled:opacity-50"
+                  className="w-full py-2.5 rounded-lg text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-[0_1px_2px_rgba(28,25,23,0.04),0_12px_32px_-16px_rgb(var(--glow)/0.18)] transition flex items-center justify-center space-x-2 disabled:opacity-50"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>{sending ? "Dispatching..." : "Submit Inquiry to Candidate"}</span>
+                  <span>{sending ? "Opening…" : "Send message"}</span>
                 </button>
               </div>
             </form>

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { FileText, Download, Printer } from "lucide-react";
 import { HCCStore } from "@/lib/store";
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/data/portfolio";
 
 export const ResumeViewer: React.FC = () => {
   const [downloading, setDownloading] = useState(false);
@@ -17,29 +18,29 @@ export const ResumeViewer: React.FC = () => {
   };
 
   return (
-    <section id="resume" className="py-20 border-b border-slate-200/70 bg-gradient-to-b from-transparent to-indigo-50/40">
+    <section id="resume" className="py-20 border-b border-slate-200/70 bg-gradient-to-b from-transparent to-blue-50/40">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <div className="flex items-center space-x-2 text-indigo-600 font-bold text-xs uppercase tracking-[0.2em] mb-1">
+            <div className="flex items-center space-x-2 text-blue-600 font-bold text-xs uppercase tracking-[0.2em] mb-1">
               <FileText className="w-4 h-4" />
               <span>Tailored Resume</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
               Curated Curriculum Vitae
             </h2>
           </div>
           <div className="flex items-center space-x-3">
             <button
               onClick={() => window.print()}
-              className="px-3.5 py-2 rounded-lg text-xs font-semibold bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 transition flex items-center space-x-1.5"
+              className="px-3.5 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 transition flex items-center space-x-1.5"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Print</span>
             </button>
             <button
               onClick={handleDownload}
-              className="px-4 py-2 rounded-lg text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-sm transition flex items-center space-x-1.5"
+              className="px-4 py-2 rounded-full text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-sm transition flex items-center space-x-1.5"
             >
               <Download className="w-3.5 h-3.5" />
               <span>{downloading ? "Downloading..." : "Download Official PDF"}</span>
@@ -59,7 +60,7 @@ export const ResumeViewer: React.FC = () => {
                 Cloud / DevOps / Infrastructure / Observability Engineer
               </p>
               <p className="text-[11px] text-slate-500 mt-1">
-                Hyderabad, India • gorle.charanvenkatesh@gmail.com • Open to Hyderabad / India / Remote
+                Hyderabad, India • {CONTACT_EMAIL} • {CONTACT_PHONE} • Open to Hyderabad / India / Remote
               </p>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { staticOverview, CONTACT_EMAIL } from "@/data/portfolio";
+import { staticOverview } from "@/data/portfolio";
+import { mailtoUrl } from "@/lib/contact";
 
 // Set NEXT_PUBLIC_API_BASE="" (as the GitHub Pages build does) to run without a backend.
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:5000/api/v1";
@@ -527,9 +528,7 @@ export const HCCStore = {
   }) => {
     if (IS_STATIC) {
       // No backend: hand the inquiry to the visitor's email client instead.
-      const subject = `Opportunity: ${inquiry.roleInterestedIn || "Hello"} — ${inquiry.companyName || inquiry.senderName}`;
-      const body = `${inquiry.message}\n\n${inquiry.senderName}\n${inquiry.senderEmail}\n${inquiry.companyName}`;
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl(inquiry);
       return { success: true, message: "Opening your email client." };
     }
     try {
