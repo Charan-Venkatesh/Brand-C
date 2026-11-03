@@ -219,14 +219,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
               <span aria-hidden className="orb float-slower w-24 h-24 sm:w-28 sm:h-28 -top-10 -right-8 sm:-right-14" />
               <span aria-hidden className="orb-glass orb float-slow w-14 h-14 -bottom-8 right-4" />
               <span aria-hidden className="orb float-slow w-8 h-8 top-[72%] -left-10 sm:-left-14" />
-              <div className="relative photo-ring rounded-[2.25rem] p-[3px] rotate-[2.5deg] shadow-2xl shadow-blue-600/25">
-                <div className="relative aspect-[4/5] rounded-[2.1rem] overflow-hidden bg-gradient-to-br from-blue-100 to-sky-100 flex items-center justify-center">
+              <div className="relative photo-ring rounded-[2rem] p-[3px] shadow-2xl shadow-blue-600/25">
+                <div className="relative aspect-[4/5] rounded-[1.85rem] overflow-hidden bg-gradient-to-br from-blue-100 to-sky-100 flex items-center justify-center">
                   {photoOk ? (
                     <img
                       ref={imgRef}
                       src={photo}
                       alt={profile?.fullName || "Charan Venkatesh Gorle"}
-                      className="w-full h-full object-cover -rotate-[2.5deg] scale-110"
+                      className="w-full h-full object-cover object-center"
                       onError={() => setPhotoOk(false)}
                     />
                   ) : (
@@ -245,7 +245,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
                   <div className="text-xs font-bold text-slate-900">OpenTelemetry · Neo4j</div>
                 </div>
               </div>
-              <div className="float-slower absolute -right-3 sm:-right-6 top-[46%] flex items-center gap-2.5 pl-2 pr-3.5 py-2 rounded-2xl bg-white/95 border border-slate-200/80 shadow-xl shadow-blue-500/10 backdrop-blur">
+              <div className="float-slower absolute -right-3 sm:-right-6 top-[66%] flex items-center gap-2.5 pl-2 pr-3.5 py-2 rounded-2xl bg-white/95 border border-slate-200/80 shadow-xl shadow-blue-500/10 backdrop-blur">
                 <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
                   <Anchor className="w-4 h-4" />
                 </span>
