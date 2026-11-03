@@ -40,7 +40,7 @@ export const ExperienceTimeline: React.FC = () => {
           {coreExperiences.map((exp) => (
             <div
               key={exp.id}
-              className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-blue-300 shadow-sm transition hover:shadow-md"
+              className="spotlight-card p-6 rounded-2xl bg-white border border-slate-200 hover:border-blue-300 shadow-sm transition duration-300 hover:shadow-xl hover:-translate-y-0.5"
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-4 border-b border-slate-100">
                 <div>

@@ -10,6 +10,7 @@ import { CareerJourneySection } from "@/components/CareerJourneySection";
 import { LeadershipCommunitySection } from "@/components/LeadershipCommunitySection";
 import { CertificationsBadges } from "@/components/CertificationsBadges";
 import { EducationSection } from "@/components/EducationSection";
+import { PhotoGallery } from "@/components/PhotoGallery";
 import { ResumeViewer } from "@/components/ResumeViewer";
 import { ContactModal } from "@/components/ContactModal";
 import { Terminal, Mail, FileDown, ArrowUp, Compass, Cpu } from "lucide-react";
@@ -50,6 +51,9 @@ export default function Home() {
 
         {/* 8. CERTIFICATIONS */}
         <CertificationsBadges />
+
+        {/* Photos */}
+        <PhotoGallery />
 
         {/* 9. EDUCATION */}
         <EducationSection />

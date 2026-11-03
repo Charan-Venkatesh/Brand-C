@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Cloud,
   Terminal,
@@ -11,11 +11,11 @@ import {
   Layers,
   MapPin,
   Mail,
-  ArrowRight,
-  User,
 } from "lucide-react";
-import { RoleTyper } from "@/components/SiteEffects";
+import { CountUp, RoleTyper } from "@/components/SiteEffects";
 import { HCCStore, ProfileData } from "@/lib/store";
+import { profilePhoto } from "@/data/portfolio";
+import { withBase } from "@/lib/utils";
 
 interface HeroSectionProps {
   onOpenContact: () => void;
@@ -23,8 +23,29 @@ interface HeroSectionProps {
   selectedCategory?: string;
 }
 
+const stats = [
+  { value: 3, suffix: "", label: "Engineering roles" },
+  { value: 5, suffix: "+", label: "Production systems" },
+  { value: 3, suffix: "", label: "Naval bases served" },
+  { value: 5, suffix: "", label: "Certifications" },
+];
+
+const stack = [
+  "OpenTelemetry", "Neo4j", "Python", "Docker", "Linux", "CI/CD", "React",
+  "FastAPI", "Power BI", "Azure", "Git", "SQL", "Shell", "Observability",
+];
+
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
   const [profile, setProfile] = useState<ProfileData | null>(null);
+  const [photoOk, setPhotoOk] = useState(true);
+  const heroRef = useRef<HTMLElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // The static HTML can fail to load the photo before React attaches onError.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth === 0) setPhotoOk(false);
+  }, []);
 
   useEffect(() => {
     HCCStore.getOverview().then((data) => {
@@ -33,6 +54,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
       }
     });
   }, []);
+
+  // Cursor-following spotlight over the hero background.
+  const onPointerMove = (e: React.PointerEvent) => {
+    const el = heroRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    el.style.setProperty("--my", `${e.clientY - r.top}px`);
+  };
 
   const capabilities = [
     {
@@ -67,25 +97,51 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
     window.open("#resume", "_self");
   };
 
+  const photo = profile?.heroPhotoUrl || profile?.primaryPhotoUrl || withBase(`/${profilePhoto}`);
+
   return (
-    <section className="relative overflow-hidden pt-10 pb-16 border-b border-slate-200 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Simple & Credible Hero */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          {/* Candidate Identity Left */}
-          <div className="md:col-span-8 space-y-4">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold">
-              <MapPin className="w-3.5 h-3.5 text-blue-600" />
+    <section
+      ref={heroRef}
+      onPointerMove={onPointerMove}
+      className="hero relative overflow-hidden bg-slate-950 text-white"
+    >
+      {/* Background: aurora blobs, grid, cursor spotlight */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none">
+        <div className="aurora aurora-1" />
+        <div className="aurora aurora-2" />
+        <div className="aurora aurora-3" />
+        <div className="hero-grid absolute inset-0" />
+        <div className="hero-spotlight absolute inset-0" />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-14">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+          {/* Identity */}
+          <div className="md:col-span-7 lg:col-span-8 space-y-6 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-slate-300 backdrop-blur">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              </span>
+              <span className="text-emerald-300 font-semibold">Open to opportunities</span>
+              <span className="text-slate-600">•</span>
+              <MapPin className="w-3.5 h-3.5" />
               <span>{profile?.currentLocation || "Hyderabad, India"}</span>
-              <span className="text-slate-300">•</span>
-              <span className="text-emerald-700 font-bold">Open to Opportunities</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              {profile?.fullName || "Charan Venkatesh Gorle"}
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.02]">
+              {profile?.fullName ? (
+                profile.fullName
+              ) : (
+                <>
+                  Charan Venkatesh
+                  <br />
+                  <span className="text-gradient">Gorle</span>
+                </>
+              )}
             </h1>
 
-            <div className="text-lg sm:text-xl font-bold text-blue-600 min-h-[1.75rem] sm:min-h-[2rem]">
+            <div className="text-lg sm:text-2xl font-semibold text-sky-300 min-h-[1.75rem] sm:min-h-[2.25rem]">
               {profile?.headline || (
                 <RoleTyper
                   roles={[
@@ -98,87 +154,107 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
               )}
             </div>
 
-            <p className="text-sm font-semibold text-slate-600">
-              {profile?.tagline || "Systems • Cloud • Automation • Observability"}
+            <p className="max-w-xl mx-auto md:mx-0 text-sm sm:text-base text-slate-400 leading-relaxed">
+              I trace failures through distributed AI-agent systems, ship software for naval
+              operations, and turn noisy telemetry into decisions. Now building toward
+              production-grade Cloud, DevOps and SRE.
             </p>
 
-            {/* Clear Primary CTAs */}
-            <div className="pt-2 flex flex-wrap gap-3">
-              <button
-                onClick={handleDownload}
-                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-lg text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white shadow-sm transition"
-              >
-                <FileDown className="w-4 h-4" />
-                <span>View Resume</span>
-              </button>
-
+            <div className="pt-1 flex flex-wrap justify-center md:justify-start gap-3">
               <a
                 href="#projects"
-                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 transition"
+                className="group inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-white text-slate-950 hover:bg-sky-100 shadow-lg shadow-sky-500/10 transition"
               >
-                <Layers className="w-4 h-4 text-blue-600" />
+                <Layers className="w-4 h-4" />
                 <span>Explore Work</span>
               </a>
-
               <button
                 onClick={onOpenContact}
-                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:brightness-110 text-white shadow-lg shadow-blue-600/30 transition"
               >
                 <Mail className="w-4 h-4" />
                 <span>Let&apos;s Connect</span>
               </button>
+              <button
+                onClick={handleDownload}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 hover:bg-white/10 border border-white/15 text-white transition"
+              >
+                <FileDown className="w-4 h-4" />
+                <span>Resume</span>
+              </button>
             </div>
           </div>
 
-          {/* Professional Photograph Right */}
-          <div className="md:col-span-4 flex justify-center md:justify-end">
-            <div className="relative w-52 h-52 sm:w-60 sm:h-60 rounded-2xl overflow-hidden border-2 border-slate-200 shadow-md bg-slate-100 flex items-center justify-center">
-              {profile?.heroPhotoUrl || profile?.primaryPhotoUrl ? (
-                <img
-                  src={profile.heroPhotoUrl || profile.primaryPhotoUrl}
-                  alt={profile.fullName}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // Fallback to placeholder avatar if image path is not yet uploaded
-                    (e.target as HTMLElement).style.display = "none";
-                  }}
-                />
-              ) : null}
-              {/* Clean human monogram avatar fallback */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 bg-slate-50 p-4 text-center">
-                <div className="w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xl mb-2">
-                  CG
-                </div>
-                <div className="font-bold text-xs text-slate-800">Charan Venkatesh Gorle</div>
-                <div className="text-[10px] text-slate-500">Cloud / DevOps / Systems</div>
+          {/* Photo */}
+          <div className="md:col-span-5 lg:col-span-4 flex justify-center md:justify-end">
+            <div className="photo-ring relative w-56 h-56 sm:w-72 sm:h-72 rounded-full p-[3px]">
+              <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-900 flex items-center justify-center">
+                {photoOk ? (
+                  <img
+                    ref={imgRef}
+                    src={photo}
+                    alt={profile?.fullName || "Charan Venkatesh Gorle"}
+                    className="w-full h-full object-cover"
+                    onError={() => setPhotoOk(false)}
+                  />
+                ) : (
+                  <span className="text-6xl sm:text-7xl font-black text-gradient select-none">CG</span>
+                )}
+              </div>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 rounded-full bg-slate-900/90 border border-white/10 text-[11px] font-semibold text-slate-200 backdrop-blur shadow-xl">
+                Cloud · DevOps · SRE
               </div>
             </div>
           </div>
         </div>
 
-        {/* Section 26: "WHAT I WORK ON" - 5 Compact Areas */}
-        <div className="mt-14 pt-10 border-t border-slate-100">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">
+        {/* Stats */}
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-white/10 bg-white/10">
+          {stats.map((s) => (
+            <div key={s.label} className="bg-slate-950/80 backdrop-blur px-5 py-5 text-center sm:text-left">
+              <div className="text-3xl sm:text-4xl font-black tracking-tight">
+                <CountUp to={s.value} />
+                <span className="text-sky-400">{s.suffix}</span>
+              </div>
+              <div className="text-xs text-slate-400 mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* What I work on */}
+        <div className="mt-16">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 mb-5">
             What I Work On
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
             {capabilities.map((c, i) => {
               const Icon = c.icon;
               return (
                 <div
                   key={i}
-                  className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-blue-300 hover:bg-blue-50/20 transition"
+                  className="spotlight-card p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-sky-400/40 hover:-translate-y-1 transition duration-300"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500/30 to-cyan-400/20 text-sky-300 flex items-center justify-center mb-3 ring-1 ring-white/10">
                     <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="font-bold text-sm text-slate-900 mb-1">{c.label}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{c.desc}</p>
+                  <h3 className="font-bold text-sm text-white mb-1.5">{c.label}</h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">{c.desc}</p>
                 </div>
               );
             })}
           </div>
+        </div>
+      </div>
+
+      {/* Tech marquee */}
+      <div className="relative border-t border-white/10 py-5 overflow-hidden marquee-mask">
+        <div className="marquee flex w-max gap-10 text-sm font-semibold text-slate-500">
+          {[...stack, ...stack].map((t, i) => (
+            <span key={i} className="flex items-center gap-10">
+              {t}
+              <span className="text-sky-500/60">✦</span>
+            </span>
+          ))}
         </div>
       </div>
     </section>

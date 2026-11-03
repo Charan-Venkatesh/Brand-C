@@ -28,12 +28,22 @@ export const SiteEffects: React.FC = () => {
     );
     // Sections render asynchronously (data loads), so pick up new ones as they appear.
     const watch = () =>
-      document.querySelectorAll("main section:not(.reveal)").forEach((el) => {
+      document.querySelectorAll("main section:not(.reveal):not(.hero)").forEach((el) => {
         el.classList.add("reveal");
         observer.observe(el);
       });
     watch();
     const mutations = new MutationObserver(watch);
+
+    // Spotlight glow that follows the cursor inside any .spotlight-card.
+    const onMove = (e: PointerEvent) => {
+      const card = (e.target as Element | null)?.closest?.(".spotlight-card") as HTMLElement | null;
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--x", `${e.clientX - r.left}px`);
+      card.style.setProperty("--y", `${e.clientY - r.top}px`);
+    };
+    document.addEventListener("pointermove", onMove, { passive: true });
     mutations.observe(document.body, { childList: true, subtree: true });
 
     return () => {
@@ -41,6 +51,7 @@ export const SiteEffects: React.FC = () => {
       window.removeEventListener("resize", onScroll);
       observer.disconnect();
       mutations.disconnect();
+      document.removeEventListener("pointermove", onMove);
     };
   }, []);
 
@@ -77,7 +88,37 @@ export const RoleTyper: React.FC<{ roles: string[] }> = ({ roles }) => {
   return (
     <span>
       {text}
-      <span className="inline-block w-0.5 h-[1em] -mb-0.5 ml-0.5 bg-blue-600 animate-pulse" />
+      <span className="inline-block w-0.5 h-[1em] -mb-0.5 ml-0.5 bg-sky-400 animate-pulse" />
     </span>
   );
+};
+
+// Counts from 0 to `to` once the number scrolls into view.
+export const CountUp: React.FC<{ to: number; duration?: number }> = ({ to, duration = 1400 }) => {
+  const ref = React.useRef<HTMLSpanElement>(null);
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      const start = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - start) / duration);
+        setValue(Math.round(to * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    });
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(raf);
+    };
+  }, [to, duration]);
+
+  return <span ref={ref}>{value}</span>;
 };

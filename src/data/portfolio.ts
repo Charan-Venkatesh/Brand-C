@@ -193,3 +193,12 @@ export const staticOverview = {
   activeResume: null,
   media: [],
 };
+
+// ---------------------------------------------------------------- photos
+// Put image files in public/photos/ and reference them here by file name.
+// The hero shows profilePhoto (falls back to initials if the file is missing).
+export const profilePhoto = "photos/profile.jpg";
+
+// Shown in the "Beyond the Terminal" gallery; the section hides itself when empty.
+// Example: { src: "photos/gdsc-workshop.jpg", caption: "GDSC drone workshop" }
+export const gallery: { src: string; caption: string }[] = [];

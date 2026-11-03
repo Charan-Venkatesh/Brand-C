@@ -54,7 +54,7 @@ export const ProjectsMatrix: React.FC<ProjectsMatrixProps> = () => {
           {projects.map((proj) => (
             <div
               key={proj.id}
-              className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-blue-300 shadow-sm transition hover:shadow-md flex flex-col justify-between"
+              className="spotlight-card p-6 rounded-2xl bg-white border border-slate-200 hover:border-blue-300 shadow-sm transition duration-300 hover:shadow-xl hover:-translate-y-0.5 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-start justify-between gap-2 mb-2">

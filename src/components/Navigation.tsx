@@ -22,36 +22,33 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-950/80 backdrop-blur-xl text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand & Identity */}
         <a href={withBase("/")} className="flex items-center space-x-3 group">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-600 text-white shadow-sm group-hover:bg-blue-700 transition">
+          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-600/30 group-hover:brightness-110 transition">
             <Terminal className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="font-bold text-sm tracking-tight text-slate-900">
+              <span className="font-bold text-sm tracking-tight text-white">
                 Charan Venkatesh Gorle
               </span>
-              <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">
-                Hiring Command Center
-              </span>
             </div>
-            <p className="text-[11px] text-slate-500 hidden sm:block">
+            <p className="text-[11px] text-slate-400 hidden lg:block">
               Cloud • DevOps • Infrastructure • Observability
             </p>
           </div>
         </a>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-5 text-xs font-semibold text-slate-600">
-          <a href="#story" className="hover:text-blue-600 transition">Story</a>
-          <a href="#experience" className="hover:text-blue-600 transition">Experience</a>
-          <a href={withBase("/projects")} className="hover:text-blue-600 transition">Projects</a>
-          <a href={withBase("/journey")} className="hover:text-blue-600 transition">Journey</a>
-          <a href="#leadership" className="hover:text-blue-600 transition">Leadership</a>
-          <a href="#certifications" className="hover:text-blue-600 transition">Certifications</a>
+        <nav className="hidden md:flex items-center space-x-5 text-xs font-semibold text-slate-300">
+          <a href="#story" className="hover:text-white transition">Story</a>
+          <a href="#experience" className="hover:text-white transition">Experience</a>
+          <a href={withBase("/projects")} className="hover:text-white transition">Projects</a>
+          <a href={withBase("/journey")} className="hover:text-white transition">Journey</a>
+          <a href="#leadership" className="hover:text-white transition">Leadership</a>
+          <a href="#certifications" className="hover:text-white transition">Certifications</a>
         </nav>
 
         {/* Action Buttons */}
@@ -59,7 +56,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
           {!IS_STATIC && (
 <a
             href={withBase("/admin/dashboard")}
-            className="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition"
+            className="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition"
             title="Open Admin Portal"
           >
             <span>Admin</span>
@@ -69,7 +66,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
           <button
             onClick={handleDownloadResume}
             disabled={downloading}
-            className="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 transition"
+            className="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition"
           >
             <Download className="w-3.5 h-3.5" />
             <span>{downloading ? "Downloading..." : "Resume"}</span>
@@ -77,7 +74,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
 
           <button
             onClick={onOpenContact}
-            className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition"
+            className="inline-flex items-center space-x-1.5 whitespace-nowrap px-3.5 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:brightness-110 text-white shadow-lg shadow-blue-600/30 transition"
           >
             <Mail className="w-3.5 h-3.5" />
             <span>Let&apos;s Connect</span>
