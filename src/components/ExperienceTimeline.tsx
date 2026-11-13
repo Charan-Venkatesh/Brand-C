@@ -2,10 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { Briefcase, Building, Layers, Calendar, ChevronRight, CheckCircle2 } from "lucide-react";
-import { HCCStore, ExperienceItem } from "@/lib/store";
+import { HCCStore, ExperienceItem, IS_STATIC } from "@/lib/store";
+import { staticOverview } from "@/data/portfolio";
 
 export const ExperienceTimeline: React.FC = () => {
-  const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
+  const [experiences, setExperiences] = useState<ExperienceItem[]>(
+    // Static build: render content into the HTML so search engines see it.
+    IS_STATIC ? staticOverview.experiences : []
+  );
   const [selectedExp, setSelectedExp] = useState<ExperienceItem | null>(null);
 
   useEffect(() => {

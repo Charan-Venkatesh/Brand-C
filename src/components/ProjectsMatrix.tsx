@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { Layers, ArrowRight, Building, Shield, ExternalLink, Code2 } from "lucide-react";
-import { HCCStore, ProjectItem } from "@/lib/store";
+import { HCCStore, ProjectItem, IS_STATIC } from "@/lib/store";
+import { staticOverview } from "@/data/portfolio";
 import { withBase } from "@/lib/utils";
 
 interface ProjectsMatrixProps {
@@ -10,7 +11,9 @@ interface ProjectsMatrixProps {
 }
 
 export const ProjectsMatrix: React.FC<ProjectsMatrixProps> = () => {
-  const [projects, setProjects] = useState<ProjectItem[]>([]);
+  const [projects, setProjects] = useState<ProjectItem[]>(
+    IS_STATIC ? staticOverview.projects.filter((p) => p.isFeatured).slice(0, 4) : []
+  );
   const [selectedProj, setSelectedProj] = useState<ProjectItem | null>(null);
 
   useEffect(() => {
@@ -108,6 +111,12 @@ export const ProjectsMatrix: React.FC<ProjectsMatrixProps> = () => {
                     </span>
                   ))}
                 </div>
+                <a
+                  href={withBase(`/work/${proj.id}/`)}
+                  className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800"
+                >
+                  Read case study <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
           ))}

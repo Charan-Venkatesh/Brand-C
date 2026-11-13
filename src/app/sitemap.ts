@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/data/portfolio";
+import { SITE_URL, projects } from "@/data/portfolio";
 
 export const dynamic = "force-static";
 
@@ -18,7 +18,8 @@ const pages: { path: string; priority: number }[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  return pages.map(({ path, priority }) => ({
+  const all = [...pages, ...projects.map((p) => ({ path: `work/${p.id}/`, priority: p.isFeatured ? 0.8 : 0.6 }))];
+  return all.map(({ path, priority }) => ({
     url: `${SITE_URL}${path}`,
     lastModified,
     changeFrequency: "monthly",

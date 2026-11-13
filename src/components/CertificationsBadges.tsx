@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { ShieldCheck, ExternalLink, Award } from "lucide-react";
-import { HCCStore, CertificationItem } from "@/lib/store";
+import { HCCStore, CertificationItem, IS_STATIC } from "@/lib/store";
+import { staticOverview } from "@/data/portfolio";
 
 export const CertificationsBadges: React.FC = () => {
-  const [certs, setCerts] = useState<CertificationItem[]>([]);
+  const [certs, setCerts] = useState<CertificationItem[]>(IS_STATIC ? staticOverview.certifications : []);
 
   useEffect(() => {
     HCCStore.getOverview().then((data) => {

@@ -93,7 +93,7 @@ export const CommandPalette: React.FC = () => {
         title: p.title,
         subtitle: [p.clientName || p.companyName, p.tags.join(" · ")].filter(Boolean).join(" — "),
         icon: Layers,
-        href: withBase("/projects/"),
+        href: withBase(`/work/${p.id}/`),
       })),
       ...experiences.map((e) => ({
         id: `ex-${e.id}`,

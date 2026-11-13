@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { ContactModal } from "@/components/ContactModal";
 import { Search, Layers, ExternalLink, Code2, Building, ShieldCheck, ArrowLeft } from "lucide-react";
-import { HCCStore, ProjectItem } from "@/lib/store";
+import { HCCStore, ProjectItem, IS_STATIC } from "@/lib/store";
+import { staticOverview } from "@/data/portfolio";
 import { withBase } from "@/lib/utils";
 
 // Filter chips: a project matches when any keyword appears in its title, category, client, or tags.
@@ -19,8 +20,8 @@ const filters = [
 ];
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState<ProjectItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState<ProjectItem[]>(IS_STATIC ? staticOverview.projects : []);
+  const [loading, setLoading] = useState(!IS_STATIC);
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -179,6 +180,13 @@ export default function ProjectsPage() {
                     <span className="font-semibold text-slate-600">Technology: </span>
                     <span>{p.technology}</span>
                   </div>
+
+                  <a
+                    href={withBase(`/work/${p.id}/`)}
+                    className="mb-3 inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800"
+                  >
+                    Read case study →
+                  </a>
 
                   <div className="flex items-center justify-between">
                     <div className="flex flex-wrap gap-1.5">
