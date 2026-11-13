@@ -82,6 +82,7 @@ export const CommandPalette: React.FC = () => {
         ["contact", "Contact"],
       ].map(([id, title]) => ({ id: `s-${id}`, group: "Sections", title, icon: Hash, href: home(id) })),
 
+      { id: "p-hire", group: "Pages", title: "Hire Charan — 30-second summary", subtitle: "For recruiters & founders", icon: FileStack, href: withBase("/hire/") },
       { id: "p-projects", group: "Pages", title: "All projects", subtitle: "Filterable case studies", icon: FileStack, href: withBase("/projects/") },
       { id: "p-journey", group: "Pages", title: "Journey page", icon: FileStack, href: withBase("/journey/") },
       { id: "p-about", group: "Pages", title: "About", icon: FileStack, href: withBase("/about/") },

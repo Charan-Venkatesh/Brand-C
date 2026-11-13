@@ -13,7 +13,7 @@ const filters = [
   { label: "Professional", slug: "professional", keywords: ["professional"] },
   { label: "Indian Navy / Defense", slug: "navy", keywords: ["navy", "defense"] },
   { label: "Observability / Cloud", slug: "observability", keywords: ["observability", "opentelemetry", "cloud", "infrastructure"] },
-  { label: "AI Systems", slug: "ai", keywords: ["ai-agent", "ai agent", "multi-agent"] },
+  { label: "AI Systems", slug: "ai", keywords: ["ai-agent", "ai agent", "multi-agent", "llm"] },
   { label: "Automation", slug: "automation", keywords: ["automation"] },
   { label: "Data / R&D", slug: "data", keywords: ["data &", "r&d", "power bi"] },
 ];

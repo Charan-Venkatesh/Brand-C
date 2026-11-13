@@ -92,7 +92,7 @@ export const ResumeViewer: React.FC = () => {
                 </div>
                 <ul className="list-disc list-inside mt-1.5 space-y-1 text-[11px] text-slate-600">
                   <li>Instrumented services with OpenTelemetry for distributed trace collection and telemetry streaming.</li>
-                  <li>Constructed runtime dependency graphs in Neo4j to visualize multi-agent call paths and failure propagation.</li>
+                  <li>Maintained operational notes and repeatable checks to improve issue handoffs, monitoring visibility, and incident handling.</li>
                   <li>Diagnosed production exceptions, bottlenecks, and orchestration timeouts in enterprise AI-agent workflows.</li>
                 </ul>
               </div>

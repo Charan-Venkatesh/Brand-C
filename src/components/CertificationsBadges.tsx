@@ -27,7 +27,7 @@ export const CertificationsBadges: React.FC = () => {
             Certifications & Accreditations
           </h2>
           <p className="mt-1 text-xs sm:text-sm text-slate-500">
-            Professional certifications from Microsoft, Google, Cisco, and SAP.
+            Certifications from Microsoft, Google, Cisco, and SAP, plus ongoing AI Cybersecurity coursework.
           </p>
         </div>
 

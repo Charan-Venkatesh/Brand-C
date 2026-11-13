@@ -8,7 +8,7 @@ import { withBase } from "@/lib/utils";
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white text-white flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900">
-      <Navigation onOpenContact={() => {}} />
+      <Navigation />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 flex-1">
         <a
@@ -55,7 +55,7 @@ export default function AboutPage() {
               At <strong className="text-slate-900 font-bold">Meghana Technologies</strong>, the work evolved into full-stack and data systems for the Indian Navy, delivering the Integrated Flight Safety Monitoring System (IFSMS) for naval aviation squadron INS 324, physical file tracking for INS DEGA, and WhatsApp help desk automation for INS Circars.
             </p>
             <p>
-              Currently at <strong className="text-slate-900 font-bold">JoulestoWatts Business Solutions (Client: Accenture)</strong>, my focus is centered around enterprise AI-agent workflows, OpenTelemetry distributed tracing, Neo4j runtime dependency mapping, failure investigation, and operational observability.
+              Currently at <strong className="text-slate-900 font-bold">JoulestoWatts Business Solutions (Client: Accenture)</strong>, my focus is centered around enterprise AI-agent workflows, OpenTelemetry distributed tracing, failure investigation, and operational observability.
             </p>
           </div>
 

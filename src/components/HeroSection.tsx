@@ -41,7 +41,7 @@ const stats = [
 ];
 
 const stack = [
-  "OpenTelemetry", "Neo4j", "Python", "Docker", "Linux", "CI/CD", "React",
+  "OpenTelemetry", "Grafana", "Python", "Docker", "Linux", "CI/CD", "React",
   "FastAPI", "Power BI", "Azure", "Git", "SQL", "Shell", "Observability",
 ];
 
@@ -218,6 +218,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
               <a href={telUrl} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-slate-600 hover:text-slate-900 hover:bg-white/80 transition">
                 <Phone className="w-4 h-4 text-blue-600" /> {CONTACT_PHONE}
               </a>
+              <a href={withBase("/hire/")} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 transition">
+                Recruiter or founder? 30-sec summary <ArrowRight className="w-3.5 h-3.5" />
+              </a>
             </div>
           </div>
 
@@ -252,7 +255,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact }) => {
                 </span>
                 <div className="text-left leading-tight">
                   <div className="text-[11px] text-slate-500">Now tracing</div>
-                  <div className="text-xs font-bold text-slate-900">OpenTelemetry · Neo4j</div>
+                  <div className="text-xs font-bold text-slate-900">OpenTelemetry · Python</div>
                 </div>
               </div>
               <div className="float-slower absolute -right-3 sm:-right-6 top-[66%] flex items-center gap-2.5 pl-2 pr-3.5 py-2 rounded-2xl bg-white/95 border border-slate-200/80 shadow-xl shadow-blue-500/10 backdrop-blur">

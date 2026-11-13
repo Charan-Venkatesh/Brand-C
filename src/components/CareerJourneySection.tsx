@@ -41,7 +41,7 @@ export const CareerJourneySection: React.FC = () => {
     {
       title: "Accenture / JoulestoWatts",
       subtitle: "Current Professional Focus",
-      desc: "Engineering enterprise AI-agent operations, OpenTelemetry distributed tracing, Neo4j dependency mapping, failure investigation, and root-cause analysis.",
+      desc: "Engineering enterprise AI-agent operations, OpenTelemetry distributed tracing, failure investigation, and root-cause analysis.",
       tag: "Enterprise Observability",
     },
     {

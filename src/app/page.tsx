@@ -139,6 +139,7 @@ export default function Home() {
             <ul className="space-y-2 text-sm text-slate-500">
               <li><a href="#story" className="hover:text-slate-900 transition">Story</a></li>
               <li><a href="#experience" className="hover:text-slate-900 transition">Experience</a></li>
+              <li><a href={withBase("/hire/")} className="hover:text-slate-900 transition">Hire me (30-sec summary)</a></li>
               <li><a href={withBase("/projects")} className="hover:text-slate-900 transition">All projects</a></li>
               <li><a href={withBase("/journey")} className="hover:text-slate-900 transition">Journey</a></li>
               {!IS_STATIC && (

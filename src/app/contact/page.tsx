@@ -34,7 +34,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-white text-white flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900">
-      <Navigation onOpenContact={() => {}} />
+      <Navigation />
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-12 flex-1">
         <a

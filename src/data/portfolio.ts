@@ -25,13 +25,13 @@ export const projects: ProjectItem[] = [
     problem:
       "Failures in multi-agent call paths were hard to trace across services, slowing root-cause analysis.",
     approach:
-      "Instrumented services with OpenTelemetry and built runtime dependency graphs in Neo4j to visualize call paths and failure propagation.",
+      "Instrumented services with OpenTelemetry to trace call paths and failure propagation, and investigated issues through logs and structured troubleshooting.",
     architecture: "",
-    technology: "OpenTelemetry, Neo4j, Python",
+    technology: "OpenTelemetry, Python, Linux",
     candidateContribution: "",
     outcome: "",
     currentStatus: "Active",
-    tags: ["OpenTelemetry", "Neo4j", "Tracing", "RCA"],
+    tags: ["OpenTelemetry", "Tracing", "Logs", "RCA"],
     isFeatured: true,
   },
   {
@@ -115,6 +115,42 @@ export const projects: ProjectItem[] = [
     tags: ["Automation", "API"],
     isFeatured: false,
   },
+  {
+    id: "rfid-asset-tracking",
+    title: "RFID-Based Asset Tracking System",
+    category: "Defense Systems",
+    projectType: "Professional",
+    companyName: "Meghana Technologies",
+    clientName: "Indian Navy",
+    classification: "Defense",
+    summary: "RFID-enabled identification and tracking of tagged naval assets and equipment.",
+    problem: "Tagged assets and equipment needed reliable movement traceability and inventory visibility.",
+    approach: "Contributed to RFID-based identification and tracking that records asset movement for inventory visibility.",
+    architecture: "",
+    technology: "RFID, Web application",
+    candidateContribution: "",
+    outcome: "",
+    currentStatus: "Delivered",
+    tags: ["RFID", "Asset tracking", "Inventory"],
+    isFeatured: false,
+  },
+  {
+    id: "cadgen-ai",
+    title: "CADGen-AI",
+    category: "AI Systems",
+    projectType: "Personal",
+    classification: "Prototype",
+    summary: "Natural-language to CAD/DXF drawing generation.",
+    problem: "Turning a plain-English part description into a CAD drawing takes manual drafting.",
+    approach: "Prototyped an LLM-assisted parameter extraction step with validation and a rule-based fallback that outputs DXF.",
+    architecture: "",
+    technology: "Python, LLM, DXF",
+    candidateContribution: "",
+    outcome: "",
+    currentStatus: "Prototype",
+    tags: ["LLM", "Python", "CAD/DXF", "AI"],
+    isFeatured: false,
+  },
 ];
 
 export const experiences: ExperienceItem[] = [
@@ -127,14 +163,14 @@ export const experiences: ExperienceItem[] = [
     startDate: "2025-07",
     isCurrentRole: true,
     description:
-      "Engineering enterprise AI-agent operations, OpenTelemetry distributed tracing, Neo4j dependency mapping, failure investigation, and root-cause analysis.",
+      "Engineering enterprise AI-agent operations, OpenTelemetry distributed tracing, failure investigation, and root-cause analysis.",
     responsibilities: [
       "Instrumented services with OpenTelemetry for distributed trace collection and telemetry streaming.",
-      "Constructed runtime dependency graphs in Neo4j to visualize multi-agent call paths and failure propagation.",
+      "Maintained operational notes and repeatable checks to improve issue handoffs, monitoring visibility, and incident handling.",
       "Diagnosed production exceptions, bottlenecks, and orchestration timeouts in enterprise AI-agent workflows.",
     ],
     achievements: [],
-    technologies: ["OpenTelemetry", "Neo4j", "Python"],
+    technologies: ["OpenTelemetry", "Python", "Linux"],
     period: "July 2025 – Present",
   },
   {
@@ -177,6 +213,25 @@ export const experiences: ExperienceItem[] = [
     technologies: ["Power BI", "Python", "Telemetry"],
     period: "December 2024 – June 2025",
   },
+  {
+    id: "dharvix",
+    company: "DharviX Tech Solutions",
+    role: "Business Intelligence Intern",
+    employmentType: "Internship",
+    location: "India",
+    startDate: "2023",
+    endDate: "2024",
+    isCurrentRole: false,
+    description:
+      "Built Power BI and Grafana dashboards on MySQL data, translating reporting requirements into visual analysis for business decisions.",
+    responsibilities: [
+      "Created Power BI and Grafana dashboards and queried MySQL data for business reviews.",
+      "Translated reporting requirements into clear visual outputs and checked report accuracy with stakeholders.",
+    ],
+    achievements: [],
+    technologies: ["Power BI", "Grafana", "MySQL"],
+    period: "2023 – 2024",
+  },
 ];
 
 export const certifications: CertificationItem[] = [
@@ -185,6 +240,7 @@ export const certifications: CertificationItem[] = [
   { id: "cisco-jca", name: "Junior Cybersecurity Analyst Career Path", issuer: "Cisco" },
   { id: "sap-sac", name: "Data Analyst – SAP Analytics Cloud", issuer: "SAP" },
   { id: "google-da", name: "Professional Data Analytics Certificate", issuer: "Google" },
+  { id: "columbia-aisec", name: "AI Cybersecurity coursework (in progress)", issuer: "Columbia University" },
 ];
 
 export const staticOverview = {
@@ -216,6 +272,7 @@ export const leadershipPhotos: Record<string, string> = {
   "Hult Prize Global Challenge": "photos/hult-trophy.webp",
   "Vedic Science & Culture Club": "photos/club-launch.webp",
   "CrossRoads with Shazin Hijazy": "photos/crossroads-certificate.webp",
+  "Connect2K24": "photos/connect-2k24-stage.webp",
 };
 
 export const gallery: { src: string; caption: string }[] = [

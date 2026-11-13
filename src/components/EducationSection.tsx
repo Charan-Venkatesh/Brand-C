@@ -22,7 +22,7 @@ export const EducationSection: React.FC = () => {
       institution: "Andhra University",
       startYear: "2021",
       endYear: "2025",
-      description: "Foundational coursework in computer systems, operating systems, networking fundamentals, distributed computing, and database architecture.",
+      description: "CGPA 7.58/10. Coursework in computer systems, operating systems, networking fundamentals, distributed computing, and database architecture.",
     },
     {
       degree: "Intermediate (12th Grade)",

@@ -5,6 +5,7 @@ export const dynamic = "force-static";
 
 const pages: { path: string; priority: number }[] = [
   { path: "", priority: 1 },
+  { path: "hire/", priority: 0.9 },
   { path: "projects/", priority: 0.9 },
   { path: "experience/", priority: 0.8 },
   { path: "journey/", priority: 0.7 },

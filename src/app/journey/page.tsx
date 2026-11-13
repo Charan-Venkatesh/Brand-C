@@ -9,7 +9,7 @@ import { withBase } from "@/lib/utils";
 export default function JourneyPage() {
   return (
     <div className="min-h-screen bg-white text-white flex flex-col font-sans selection:bg-blue-100 selection:text-blue-900">
-      <Navigation onOpenContact={() => {}} />
+      <Navigation />
 
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <a

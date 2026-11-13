@@ -8,7 +8,8 @@ import { BrandMark, Wordmark } from "@/components/Brand";
 import { openSearch } from "@/components/CommandPalette";
 
 interface NavigationProps {
-  onOpenContact: () => void;
+  /** Opens the contact modal; pages without one fall back to the home contact section. */
+  onOpenContact?: () => void;
 }
 
 const links = [
@@ -23,7 +24,9 @@ const links = [
 
 const home = (hash: string) => `${withBase("/")}#${hash}`;
 
-export const Navigation: React.FC<NavigationProps> = ({ onOpenContact }) => {
+export const Navigation: React.FC<NavigationProps> = ({
+  onOpenContact = () => (window.location.href = home("contact")),
+}) => {
   const [active, setActive] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMac, setIsMac] = useState(true);

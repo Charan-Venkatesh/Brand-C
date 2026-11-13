@@ -24,6 +24,14 @@ export const LeadershipCommunitySection: React.FC = () => {
       icon: Lightbulb,
     },
     {
+      title: "Connect2K24",
+      anchor: "connect2k24",
+      role: "Lead Organiser",
+      period: "2024",
+      desc: "Led a student team and organised CONNECT 2K24, a university technical fest at Andhra University — coordinating team activities and event execution.",
+      icon: Users,
+    },
+    {
       title: "CrossRoads with Shazin Hijazy",
       anchor: "crossroads",
       role: "Technical Support Lead",
@@ -69,7 +77,7 @@ export const LeadershipCommunitySection: React.FC = () => {
         </div>
 
         {/* Photo-led featured initiatives */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {featured.map((item) => {
             const Icon = item.icon;
             return (
