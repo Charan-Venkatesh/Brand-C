@@ -4,7 +4,7 @@ import "./globals.css";
 import { SiteEffects } from "@/components/SiteEffects";
 import { CommandPalette } from "@/components/CommandPalette";
 import { FloatingWhatsApp } from "@/components/ContactSection";
-import { CONTACT_EMAIL, CONTACT_PHONE_TEL, GITHUB_URL, GOOGLE_SITE_VERIFICATION, LINKEDIN_URL } from "@/data/portfolio";
+import { CONTACT_EMAIL, CONTACT_PHONE_TEL, GITHUB_URL, GOOGLE_SITE_VERIFICATION, LINKEDIN_URL, SITE_URL } from "@/data/portfolio";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +16,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://charan-venkatesh.github.io/Brand-C/";
 const DESCRIPTION =
   "Charan Venkatesh Gorle — Cloud, DevOps & Observability engineer. OpenTelemetry tracing for enterprise AI agents, software for Indian Navy operations, and telemetry analytics.";
 

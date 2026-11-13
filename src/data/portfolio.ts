@@ -7,7 +7,7 @@ export const CONTACT_PHONE = "+91 77807 60730";
 export const CONTACT_PHONE_TEL = "+917780760730";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/charan-venkatesh-gorle/";
 export const GITHUB_URL = "https://github.com/Charan-Venkatesh";
-export const SITE_URL = "https://charan-venkatesh.github.io/Brand-C/";
+export const SITE_URL = "https://charan-venkatesh.github.io/";
 // Google Search Console → Add property → URL prefix → "HTML tag": paste only the content="…" value here.
 export const GOOGLE_SITE_VERIFICATION = "";
 
